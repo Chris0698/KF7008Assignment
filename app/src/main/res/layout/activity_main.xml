@@ -11,7 +11,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <FrameLayout
+            android:id="@+id/fragmentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/navBottom"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.01"
+            tools:layout_editor_absoluteX="0dp" />
+
         <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/navBottom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:labelVisibilityMode="labeled"
