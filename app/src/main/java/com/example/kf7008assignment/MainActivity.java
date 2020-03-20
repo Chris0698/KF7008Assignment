@@ -44,25 +44,43 @@ public class MainActivity extends AppCompatActivity implements IMainActivity
                     {
                         case R.id.fitnessNavFootsteps:
                         {
-                            //fragment = new
+                            fragment = new StepsFragment();
+                            break;
+                        }
+                        case R.id.fitnessNavCalories:
+                        {
+                            fragment = new CaloriesFragment();
+                            break;
+                        }
+                        case R.id.fitnessNavSleep:
+                        {
+                            fragment = new SleepFragment();
+                            break;
+                        }
+                        case R.id.fitnessNavMyGoals:
+                        {
+                            fragment = new MyGoalsFragment();
+                            break;
                         }
                         case R.id.fitnessNavMyDevice:
                         {
                             fragment = new MyDeviceFragment();
+                            break;
                         }
                     }
+
+                    //needs to go in the presenter possibly
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    if(fragmentManager != null)
+                    {
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+                        fragmentTransaction.commit();
+                    }
+
                     return true;
                 }
             });
-        }
-
-        //needs to go in the presenter
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        if(fragmentManager != null)
-        {
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainer, new MyDeviceFragment());
-            fragmentTransaction.commit();
         }
     }
 }
