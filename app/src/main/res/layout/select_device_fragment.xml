@@ -14,4 +14,20 @@
         android:layout_marginLeft="10sp"/>
 
 
+
+    <ListView
+        android:id="@+id/myDevicesList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="70sp"
+        android:layout_marginBottom="70sp"/>
+
+    <Button
+        android:id="@+id/backButtonSelectDeviceFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:layout_gravity="bottom"/>
+
+
 </FrameLayout>

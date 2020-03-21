@@ -8,13 +8,18 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements IMainActivity
 {
     private MainActivityPresenter mainActivityPresenter;
     private BottomNavigationView bottomNavigationView;
+
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -78,6 +83,40 @@ public class MainActivity extends AppCompatActivity implements IMainActivity
                         fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.commit();
                     }
+
+                    return true;
+                }
+            });
+        }
+
+        navigationView = findViewById(R.id.navigationView);
+        if(navigationView != null)
+        {
+            navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener()
+            {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem)
+                {
+                    Fragment fragment = null;
+                    switch (menuItem.getItemId())
+                    {
+                        case R.id.navDrawMyDevice:
+                        {
+                            fragment = new MyDeviceFragment();
+                            break;
+                        }
+
+                    }
+
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    if(fragmentManager != null)
+                    {
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();
+                    }
+
 
                     return true;
                 }
