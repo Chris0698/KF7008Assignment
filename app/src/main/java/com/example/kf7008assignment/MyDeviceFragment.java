@@ -11,12 +11,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class MyDeviceFragment extends Fragment implements IMyDevice
 {
     private TextView deviceNameTextView;
     private TextView deviceAddressTextView;
     private Button connectButton;
+
+    private MyDevicePresenter myDevicePresenter;
 
     @Nullable
     @Override
@@ -26,7 +30,7 @@ public class MyDeviceFragment extends Fragment implements IMyDevice
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState)
     {
         TextView fragmentHeader = view.findViewById(R.id.fragmentHeading);
         if(fragmentHeader != null)
@@ -43,6 +47,14 @@ public class MyDeviceFragment extends Fragment implements IMyDevice
                 public void onClick(View v)
                 {
                     Log.i("Q", "Button clicked");
+                    FragmentManager fragmentManager = getFragmentManager();
+                    if(fragmentManager != null)
+                    {
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.fragmentContainer, new SelectDeviceFragment());
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();
+                    }
                 }
             });
         }
