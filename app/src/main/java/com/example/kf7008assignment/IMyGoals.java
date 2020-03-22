@@ -7,4 +7,11 @@ public interface IMyGoals
     void SetSleepTextView(String value);
 
     void SetCaloriesTextView(String value);
+
+
+    void SetStepsGoalTextView(String goalCount);
+
+    void SetSleepGoalTextView(String goalCount);
+
+    void SetCaloriesGoalTextView(String goalCount);
 }

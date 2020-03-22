@@ -17,6 +17,10 @@ public class MyGoalsFragment extends Fragment implements IMyGoals
     private TextView sleepTextView;
     private TextView caloriesTextView;
 
+    private TextView stepsGoalPlainText;
+    private TextView sleepGoalPlainText;
+    private TextView caloriesGoalPlainText;
+
     private MyGoalsPresenter myGoalsPresenter;
 
     @Nullable
@@ -46,8 +50,9 @@ public class MyGoalsFragment extends Fragment implements IMyGoals
         sleepTextView = view.findViewById(R.id.sleepTextView);
         caloriesTextView = view.findViewById(R.id.caloriesTextView);
 
-        myGoalsPresenter.SetGoals();
-
+        sleepGoalPlainText = view.findViewById(R.id.sleepGoalPlaintext);
+        stepsGoalPlainText = view.findViewById(R.id.stepsGoalPlainText);
+        caloriesGoalPlainText = view.findViewById(R.id.caloriesGoalPlainText);
 
         Button updateGoalsButton = view.findViewById(R.id.updateGoalsButton);
         if(updateGoalsButton != null)
@@ -67,12 +72,14 @@ public class MyGoalsFragment extends Fragment implements IMyGoals
                     }
                     catch (Exception ex)
                     {
-
+                        //changes are it an illegal cast
                     }
                 }
             });
         }
 
+        myGoalsPresenter.SetGoals();
+        myGoalsPresenter.GetStatsAchievedCount();
     }
 
     @Override
@@ -99,6 +106,33 @@ public class MyGoalsFragment extends Fragment implements IMyGoals
         if(caloriesTextView != null)
         {
             caloriesTextView.setText(value);
+        }
+    }
+
+    @Override
+    public void SetStepsGoalTextView(String goalCount)
+    {
+        if(stepsGoalPlainText != null)
+        {
+            stepsGoalPlainText.setText("Times step goal achieved: " + goalCount);
+        }
+    }
+
+    @Override
+    public void SetSleepGoalTextView(String goalCount)
+    {
+        if(sleepGoalPlainText != null)
+        {
+            sleepGoalPlainText.setText("Times sleep goal achieved: " + goalCount);
+        }
+    }
+
+    @Override
+    public void SetCaloriesGoalTextView(String goalCount)
+    {
+        if(caloriesGoalPlainText != null)
+        {
+            caloriesGoalPlainText.setText("Times calories burnt goal achieved: " + goalCount);
         }
     }
 }

@@ -46,7 +46,6 @@ public class MyDeviceFragment extends Fragment implements IMyDevice
                 @Override
                 public void onClick(View v)
                 {
-                    Log.i("Q", "Button clicked");
                     FragmentManager fragmentManager = getFragmentManager();
                     if(fragmentManager != null)
                     {

@@ -27,5 +27,12 @@ public class MyGoalsPresenter
         iMyGoals.SetStepsTextView("0");
     }
 
+    public void GetStatsAchievedCount()
+    {
+        iMyGoals.SetCaloriesGoalTextView("0");
+        iMyGoals.SetSleepGoalTextView("0");
+        iMyGoals.SetStepsGoalTextView("0");
+    }
+
 }
 

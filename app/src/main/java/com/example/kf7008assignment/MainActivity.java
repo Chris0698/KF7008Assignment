@@ -8,17 +8,13 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity implements IMainActivity
+public class MainActivity extends AppCompatActivity
 {
-    private MainActivityPresenter mainActivityPresenter;
     private BottomNavigationView bottomNavigationView;
-
     private NavigationView navigationView;
 
     @Override
@@ -26,15 +22,6 @@ public class MainActivity extends AppCompatActivity implements IMainActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        try
-        {
-            mainActivityPresenter = new MainActivityPresenter(this);
-        }
-        catch (Exception exception)
-        {
-
-        }
 
         bottomNavigationView = findViewById(R.id.navBottom);
         if(bottomNavigationView != null)
@@ -103,9 +90,23 @@ public class MainActivity extends AppCompatActivity implements IMainActivity
                         case R.id.navDrawMyDevice:
                         {
                             fragment = new MyDeviceFragment();
+                            bottomNavigationView.getMenu().clear();
+                            bottomNavigationView.inflateMenu(R.menu.fitness_nav_menu);
                             break;
                         }
-
+                        case R.id.navDrawMyHealth:
+                        {
+                            fragment = new MyDeviceFragment();
+                            bottomNavigationView.getMenu().clear();
+                            bottomNavigationView.inflateMenu(R.menu.health_nav_menu);
+                            break;
+                        }
+                        case R.id.navDrawAbout:
+                        {
+                            fragment = new MyDeviceFragment();
+                            bottomNavigationView.getMenu().clear();
+                            bottomNavigationView.inflateMenu(R.menu.fitness_nav_menu);
+                        }
                     }
 
                     FragmentManager fragmentManager = getSupportFragmentManager();
