@@ -93,4 +93,11 @@ public class SelectDeviceFragment extends Fragment implements ISelectDevice
         devices.add(bluetoothDevice);
         deviceListAdapter.notifyDataSetChanged();
     }
+
+    @Override
+    public void onDestroy()
+    {
+        super.onDestroy();
+        getActivity().unregisterReceiver(selectDevicePresenter.broadcastReceiver);
+    }
 }
