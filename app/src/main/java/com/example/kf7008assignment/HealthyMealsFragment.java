@@ -10,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class SleepFragment extends Fragment
+public class HealthyMealsFragment extends Fragment
 {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.steps_fragment, container, false);
+        return inflater.inflate(R.layout.healthy_meals_fragment, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
-        TextView fragmentHeading = view.findViewById(R.id.fragmentHeading);
-        if(fragmentHeading != null)
+        TextView fragmentHeader = view.findViewById(R.id.fragmentHeading);
+        if(fragmentHeader != null)
         {
-            fragmentHeading.setText("Sleep");
+            fragmentHeader.setText("Healthy Meals");
         }
     }
 }

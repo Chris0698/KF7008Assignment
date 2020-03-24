@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="Food Log"/>
+    <item android:title="Food Log" android:id="@+id/healthyNavFoodLog"/>
 
-    <item android:title="Health Meals"/>
+    <item android:title="Healthy Meals" android:id="@+id/healthyNavHealthyMeals"/>
 </menu>

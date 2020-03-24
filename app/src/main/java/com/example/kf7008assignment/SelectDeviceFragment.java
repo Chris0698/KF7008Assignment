@@ -1,10 +1,13 @@
 package com.example.kf7008assignment;
 
 import android.bluetooth.BluetoothDevice;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,9 +22,8 @@ import java.util.ArrayList;
 
 public class SelectDeviceFragment extends Fragment implements ISelectDevice
 {
-    private Button backButton;
-    private ListView deviceListView;
     private ArrayList<BluetoothDevice> devices;
+    private ArrayAdapter deviceListAdapter;
 
     private SelectDevicePresenter selectDevicePresenter;
 
@@ -41,7 +43,7 @@ public class SelectDeviceFragment extends Fragment implements ISelectDevice
             fragmentHeader.setText("Select Device");
         }
 
-        backButton = view.findViewById(R.id.backButtonSelectDeviceFragment);
+        Button backButton = view.findViewById(R.id.backButtonSelectDeviceFragment);
         if(backButton != null)
         {
             backButton.setOnClickListener(new View.OnClickListener()
@@ -70,15 +72,25 @@ public class SelectDeviceFragment extends Fragment implements ISelectDevice
 
         }
 
-        deviceListView = view.findViewById(R.id.myDevicesList);
+        ListView deviceListView = view.findViewById(R.id.myDevicesList);
         devices = new ArrayList<>();
-        android.widget.ArrayAdapter<BluetoothDevice> listAdapter = new android.widget.ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, devices);
-        deviceListView.setAdapter(listAdapter);
+        deviceListAdapter = new android.widget.ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, devices);
+        deviceListView.setAdapter(deviceListAdapter);
+
+        Intent intent = selectDevicePresenter.EnableBluetooth();
+        if(intent != null)
+        {
+            startActivityForResult(intent, 1);
+
+            IntentFilter intentFilter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+            getActivity().registerReceiver(selectDevicePresenter.broadcastReceiver, intentFilter);
+        }
     }
 
     @Override
     public void AddDeviceToList(BluetoothDevice bluetoothDevice)
     {
         devices.add(bluetoothDevice);
+        deviceListAdapter.notifyDataSetChanged();
     }
 }

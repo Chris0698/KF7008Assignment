@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -15,7 +16,6 @@ import com.google.android.material.navigation.NavigationView;
 public class MainActivity extends AppCompatActivity
 {
     private BottomNavigationView bottomNavigationView;
-    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -59,24 +59,36 @@ public class MainActivity extends AppCompatActivity
                             fragment = new MyDeviceFragment();
                             break;
                         }
+                        case R.id.healthyNavFoodLog:
+                        {
+                            fragment = new FoodLogFragment();
+                            break;
+                        }
+                        case R.id.healthyNavHealthyMeals:
+                        {
+                            fragment = new HealthyMealsFragment();
+                            break;
+                        }
+                        default:
+                        {
+                            fragment = new StepsFragment();
+                            Log.i("TAG", "Unknown nav option");
+                        }
                     }
 
                     //needs to go in the presenter possibly
                     FragmentManager fragmentManager = getSupportFragmentManager();
-                    if(fragmentManager != null)
-                    {
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.fragmentContainer, fragment);
-                        fragmentTransaction.addToBackStack(null);
-                        fragmentTransaction.commit();
-                    }
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
 
                     return true;
                 }
             });
         }
 
-        navigationView = findViewById(R.id.navigationView);
+        NavigationView navigationView = findViewById(R.id.navigationView);
         if(navigationView != null)
         {
             navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener()
@@ -96,7 +108,7 @@ public class MainActivity extends AppCompatActivity
                         }
                         case R.id.navDrawMyHealth:
                         {
-                            fragment = new MyDeviceFragment();
+                            fragment = new FoodLogFragment();
                             bottomNavigationView.getMenu().clear();
                             bottomNavigationView.inflateMenu(R.menu.health_nav_menu);
                             break;
@@ -110,14 +122,10 @@ public class MainActivity extends AppCompatActivity
                     }
 
                     FragmentManager fragmentManager = getSupportFragmentManager();
-                    if(fragmentManager != null)
-                    {
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.fragmentContainer, fragment);
-                        fragmentTransaction.addToBackStack(null);
-                        fragmentTransaction.commit();
-                    }
-
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
 
                     return true;
                 }
