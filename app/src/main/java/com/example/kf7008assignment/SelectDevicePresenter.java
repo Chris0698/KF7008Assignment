@@ -1,16 +1,21 @@
 package com.example.kf7008assignment;
 
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.content.BroadcastReceiver;
+import android.bluetooth.BluetoothManager;
+import android.bluetooth.le.BluetoothLeScanner;
+import android.bluetooth.le.ScanCallback;
+import android.bluetooth.le.ScanResult;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+
 public class SelectDevicePresenter
 {
     private ISelectDevice iSelectDevice;
+
     private BluetoothAdapter bluetoothAdapter;
+    private BluetoothLeScanner bluetoothLeScanner;
 
     public SelectDevicePresenter(ISelectDevice iSelectDevice) throws Exception
     {
@@ -22,35 +27,56 @@ public class SelectDevicePresenter
         this.iSelectDevice = iSelectDevice;
     }
 
-    public Intent EnableBluetooth()
+    public void InitialiseBluetoothLE(Context context)
     {
-        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        if(bluetoothAdapter != null)
+        final BluetoothManager bluetoothManager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
+        bluetoothAdapter = bluetoothManager.getAdapter();
+        if(bluetoothAdapter == null)
         {
-            if (!bluetoothAdapter.isEnabled())
-            {
-                return new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            }
+            Log.i("TAG", "Bluetooth adapter is null");
         }
-
-        return null;
     }
 
-    public final BroadcastReceiver broadcastReceiver = new BroadcastReceiver()
+    public Intent EnableBluetoothLEIntent()
+    {
+        if(bluetoothAdapter == null || !bluetoothAdapter.isEnabled())
+        {
+            //turn BT on
+            return new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+        }
+        else
+        {
+            //BT already on or adapter is null
+            return  null;
+        }
+    }
+
+    public void ScanDeviceLE(final boolean enable)
+    {
+        bluetoothLeScanner = bluetoothAdapter.getBluetoothLeScanner();
+
+        if(enable)
+        {
+            bluetoothLeScanner.startScan(scanCallback);
+        }
+        else
+        {
+            StopScan();
+        }
+    }
+
+    public void StopScan()
+    {
+        bluetoothLeScanner.stopScan(scanCallback);
+    }
+
+    private ScanCallback scanCallback = new ScanCallback()
     {
         @Override
-        public void onReceive(Context context, Intent intent)
+        public void onScanResult(int callbackType, ScanResult result)
         {
-            String action = intent.getAction();
-            if(action.equals(BluetoothDevice.ACTION_FOUND))
-            {
-                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                String deviceName = device.getName();
-                String deviceAddress = device.getAddress();
-
-                Log.i("TAG", "Found Device: " + deviceName + " " + deviceAddress);
-                iSelectDevice.AddDeviceToList(device);
-            }
+            Log.i("TAG", "Device Found: " + result.getDevice().getName() + " " + result.getDevice().getAddress());
+            iSelectDevice.AddDeviceToList(result.getDevice());
         }
     };
 }

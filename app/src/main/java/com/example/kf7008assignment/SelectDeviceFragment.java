@@ -2,8 +2,8 @@ package com.example.kf7008assignment;
 
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class SelectDeviceFragment extends Fragment implements ISelectDevice
 {
     private ArrayList<BluetoothDevice> devices;
-    private ArrayAdapter deviceListAdapter;
+    private ArrayAdapter<BluetoothDevice> deviceListAdapter;
 
     private SelectDevicePresenter selectDevicePresenter;
 
@@ -51,6 +51,7 @@ public class SelectDeviceFragment extends Fragment implements ISelectDevice
                 @Override
                 public void onClick(View v)
                 {
+                    selectDevicePresenter.StopScan();
                     FragmentManager fragmentManager = getFragmentManager();
                     if(fragmentManager != null)
                     {
@@ -74,17 +75,37 @@ public class SelectDeviceFragment extends Fragment implements ISelectDevice
 
         ListView deviceListView = view.findViewById(R.id.myDevicesList);
         devices = new ArrayList<>();
-        deviceListAdapter = new android.widget.ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, devices);
+
+        deviceListAdapter = new ArrayAdapter<BluetoothDevice>(getActivity(), android.R.layout.simple_list_item_2, android.R.id.text1 ,devices)
+        {
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent)
+            {
+                View view = super.getView(position, convertView, parent);
+                TextView deviceName = view.findViewById(android.R.id.text1);
+                TextView deviceAddress = view.findViewById(android.R.id.text2);
+
+                deviceName.setText(devices.get(position).getName());
+                deviceAddress.setText(devices.get(position).getAddress());
+
+                return view;
+            }
+        };
+
         deviceListView.setAdapter(deviceListAdapter);
 
-        Intent intent = selectDevicePresenter.EnableBluetooth();
-        if(intent != null)
-        {
-            startActivityForResult(intent, 1);
 
-            IntentFilter intentFilter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
-            getActivity().registerReceiver(selectDevicePresenter.broadcastReceiver, intentFilter);
+        selectDevicePresenter.InitialiseBluetoothLE(getContext());
+        Intent enableBluetoothIntent = selectDevicePresenter.EnableBluetoothLEIntent();
+        if(enableBluetoothIntent != null)
+        {
+            //bluetooth is not enabled, turn it on here
+            startActivityForResult(enableBluetoothIntent, 1);
         }
+
+        selectDevicePresenter.ScanDeviceLE(true);
+
     }
 
     @Override
@@ -94,10 +115,5 @@ public class SelectDeviceFragment extends Fragment implements ISelectDevice
         deviceListAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    public void onDestroy()
-    {
-        super.onDestroy();
-        getActivity().unregisterReceiver(selectDevicePresenter.broadcastReceiver);
-    }
+
 }
