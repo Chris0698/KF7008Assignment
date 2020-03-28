@@ -8,7 +8,6 @@ public interface IMyGoals
 
     void SetCaloriesTextView(String value);
 
-
     void SetStepsGoalTextView(String goalCount);
 
     void SetSleepGoalTextView(String goalCount);

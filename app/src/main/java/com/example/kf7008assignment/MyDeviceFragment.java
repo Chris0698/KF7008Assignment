@@ -1,6 +1,8 @@
 package com.example.kf7008assignment;
 
+import android.bluetooth.BluetoothDevice;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,10 +33,21 @@ public class MyDeviceFragment extends Fragment implements IMyDevice
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState)
     {
+        deviceNameTextView = view.findViewById(R.id.deviceNameTextView);
+        deviceAddressTextView = view.findViewById(R.id.deviceAddressTextView);
         TextView fragmentHeader = view.findViewById(R.id.fragmentHeading);
         if(fragmentHeader != null)
         {
             fragmentHeader.setText("My Device");
+        }
+
+        try
+        {
+            myDevicePresenter = new MyDevicePresenter(this);
+        }
+        catch (Exception ex)
+        {
+            Log.i("TAG", "My Device Presenter failed to create");
         }
 
         connectButton = view.findViewById(R.id.deviceButton);
@@ -45,20 +58,28 @@ public class MyDeviceFragment extends Fragment implements IMyDevice
                 @Override
                 public void onClick(View v)
                 {
-                    FragmentManager fragmentManager = getFragmentManager();
-                    if(fragmentManager != null)
+                    BluetoothDevice connectedDevice = myDevicePresenter.GetConnectedDevice();
+                    if(connectedDevice == null)
                     {
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.fragmentContainer, new SelectDeviceFragment());
-                        fragmentTransaction.addToBackStack(null);
-                        fragmentTransaction.commit();
+                        FragmentManager fragmentManager = getFragmentManager();
+                        if(fragmentManager != null)
+                        {
+                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                            fragmentTransaction.replace(R.id.fragmentContainer, new SelectDeviceFragment());
+                            fragmentTransaction.addToBackStack(null);
+                            fragmentTransaction.commit();
+                        }
+                    }
+                    else
+                    {
+                        myDevicePresenter.DisconnectFromDevice();
                     }
                 }
             });
         }
 
-        deviceNameTextView = view.findViewById(R.id.deviceNameTextView);
-        deviceAddressTextView = view.findViewById(R.id.deviceAddressTextView);
+        myDevicePresenter.GetStatus();
+
     }
 
     @Override

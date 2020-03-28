@@ -5,4 +5,6 @@ import android.bluetooth.BluetoothDevice;
 public interface ISelectDevice
 {
     void AddDeviceToList(BluetoothDevice bluetoothDevice);
+
+    void AlertUserOfConnection();
 }

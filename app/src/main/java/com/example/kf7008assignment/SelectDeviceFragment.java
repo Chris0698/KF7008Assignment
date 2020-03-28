@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -43,6 +44,8 @@ public class SelectDeviceFragment extends Fragment implements ISelectDevice
             fragmentHeader.setText("Select Device");
         }
 
+        devices = new ArrayList<>();
+
         Button backButton = view.findViewById(R.id.backButtonSelectDeviceFragment);
         if(backButton != null)
         {
@@ -74,7 +77,20 @@ public class SelectDeviceFragment extends Fragment implements ISelectDevice
         }
 
         ListView deviceListView = view.findViewById(R.id.myDevicesList);
-        devices = new ArrayList<>();
+        if(deviceListView != null)
+        {
+            deviceListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+            {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+                {
+                    //Log.i("TAG", "Click " + position);
+                    BluetoothDevice bluetoothDevice = devices.get(position);
+                    selectDevicePresenter.ConnectToDevice(bluetoothDevice, getContext());
+                }
+            });
+        }
+
 
         deviceListAdapter = new ArrayAdapter<BluetoothDevice>(getActivity(), android.R.layout.simple_list_item_2, android.R.id.text1 ,devices)
         {
@@ -115,5 +131,9 @@ public class SelectDeviceFragment extends Fragment implements ISelectDevice
         deviceListAdapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void AlertUserOfConnection()
+    {
 
+    }
 }

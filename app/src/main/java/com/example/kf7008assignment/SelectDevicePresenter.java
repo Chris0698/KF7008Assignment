@@ -1,6 +1,8 @@
 package com.example.kf7008assignment;
 
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothManager;
 import android.bluetooth.le.BluetoothLeScanner;
 import android.bluetooth.le.ScanCallback;
@@ -9,13 +11,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-
 public class SelectDevicePresenter
 {
     private ISelectDevice iSelectDevice;
 
     private BluetoothAdapter bluetoothAdapter;
     private BluetoothLeScanner bluetoothLeScanner;
+    private BluetoothGatt bluetoothGatt;    //used for device connection
 
     public SelectDevicePresenter(ISelectDevice iSelectDevice) throws Exception
     {
@@ -79,4 +81,19 @@ public class SelectDevicePresenter
             iSelectDevice.AddDeviceToList(result.getDevice());
         }
     };
+
+    public void ConnectToDevice(BluetoothDevice bluetoothDevice, Context context)
+    {
+        //we going to fake connection here
+        StopScan();
+
+        ConnectedDevice.GetInstance().SetConnectedDevice(bluetoothDevice);
+
+        /*
+        if(bluetoothGatt == null)
+        {
+            bluetoothGatt = bluetoothDevice.connectGatt(context, false, )
+        }
+         */
+    }
 }
