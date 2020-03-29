@@ -28,6 +28,8 @@ public class SelectDeviceFragment extends Fragment implements ISelectDevice
 
     private SelectDevicePresenter selectDevicePresenter;
 
+    private final int ENABLE_BLUETOOTH = 1;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
@@ -86,7 +88,7 @@ public class SelectDeviceFragment extends Fragment implements ISelectDevice
                 {
                     //Log.i("TAG", "Click " + position);
                     BluetoothDevice bluetoothDevice = devices.get(position);
-                    selectDevicePresenter.ConnectToDevice(bluetoothDevice, getContext());
+                    selectDevicePresenter.ConnectToDevice(bluetoothDevice, getContext(), getActivity());
                 }
             });
         }
@@ -111,17 +113,33 @@ public class SelectDeviceFragment extends Fragment implements ISelectDevice
 
         deviceListView.setAdapter(deviceListAdapter);
 
-
         selectDevicePresenter.InitialiseBluetoothLE(getContext());
-        Intent enableBluetoothIntent = selectDevicePresenter.EnableBluetoothLEIntent();
-        if(enableBluetoothIntent != null)
+        boolean bluetoothEnabled = selectDevicePresenter.IsBluetoothEnabled();
+        if(!bluetoothEnabled)
         {
-            //bluetooth is not enabled, turn it on here
-            startActivityForResult(enableBluetoothIntent, 1);
+            Intent enableBluetoothIntent = selectDevicePresenter.EnableBluetoothLEIntent();
+            if(enableBluetoothIntent != null)
+            {
+                //bluetooth is not enabled, turn it on here
+                //A request message will appear to enable BT,
+                //check onActivityResult
+                startActivityForResult(enableBluetoothIntent, ENABLE_BLUETOOTH);
+            }
         }
+        else
+        {
+            selectDevicePresenter.ScanDeviceLE(true);
+        }
+    }
 
-        selectDevicePresenter.ScanDeviceLE(true);
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
+    {
+        //pop up box will appear to enabe BT
+        if(requestCode == ENABLE_BLUETOOTH)
+        {
+            selectDevicePresenter.ScanDeviceLE(true);
+        }
     }
 
     @Override

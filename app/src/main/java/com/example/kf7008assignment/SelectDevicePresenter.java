@@ -1,5 +1,6 @@
 package com.example.kf7008assignment;
 
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
@@ -36,6 +37,24 @@ public class SelectDevicePresenter
         if(bluetoothAdapter == null)
         {
             Log.i("TAG", "Bluetooth adapter is null");
+        }
+    }
+
+    public boolean IsBluetoothEnabled()
+    {
+        if(bluetoothAdapter == null)
+        {
+            //no BT support
+            return false;
+        }
+        else if(!bluetoothAdapter.isEnabled())
+        {
+            return false;
+        }
+        else
+        {
+            //BT enabled
+            return true;
         }
     }
 
@@ -82,18 +101,20 @@ public class SelectDevicePresenter
         }
     };
 
-    public void ConnectToDevice(BluetoothDevice bluetoothDevice, Context context)
+    public void ConnectToDevice(BluetoothDevice bluetoothDevice, Context context, Activity activity)
     {
         //we going to fake connection here
         StopScan();
 
-        ConnectedDevice.GetInstance().SetConnectedDevice(bluetoothDevice);
-
-        /*
+          /*
         if(bluetoothGatt == null)
         {
-            bluetoothGatt = bluetoothDevice.connectGatt(context, false, )
+            bluetoothGatt = bluetoothDevice.connectGatt(context, false, someCallBack)
         }
          */
+
+        ConnectedDevice.GetInstance().SetConnectedDevice(bluetoothDevice);
+
+       // new DeviceConnectedAlertScreen().show();
     }
 }

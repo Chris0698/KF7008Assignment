@@ -78,7 +78,7 @@ public class MyDeviceFragment extends Fragment implements IMyDevice
             });
         }
 
-        myDevicePresenter.GetStatus();
+        myDevicePresenter.GetConnectedDeviceStatus();
 
     }
 

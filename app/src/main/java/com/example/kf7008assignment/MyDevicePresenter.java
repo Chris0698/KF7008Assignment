@@ -6,8 +6,6 @@ public class MyDevicePresenter
 {
     private IMyDevice iMyDevice;
 
-    private BluetoothDevice connectedDevice;
-
     public MyDevicePresenter(IMyDevice iMyDevice) throws Exception
     {
         if(iMyDevice == null)
@@ -18,7 +16,7 @@ public class MyDevicePresenter
         this.iMyDevice = iMyDevice;
     }
 
-    public void GetStatus()
+    public void GetConnectedDeviceStatus()
     {
         BluetoothDevice connectedDevice = ConnectedDevice.GetInstance().GetConnectedDevice();
         if(connectedDevice == null)
@@ -30,7 +28,6 @@ public class MyDevicePresenter
         }
         else
         {
-            this.connectedDevice = connectedDevice;
             iMyDevice.SetButtonText("Disconnect From Device");
             iMyDevice.SetDeviceName("Device Name: " + connectedDevice.getName());
             iMyDevice.SetDeviceAddress("Device Address: " + connectedDevice.getAddress());
@@ -39,7 +36,7 @@ public class MyDevicePresenter
 
     public BluetoothDevice GetConnectedDevice()
     {
-        return connectedDevice;
+        return ConnectedDevice.GetInstance().GetConnectedDevice();
     }
 
     public void DisconnectFromDevice()
