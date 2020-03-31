@@ -16,19 +16,16 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
 
-public class SelectDeviceFragment extends Fragment implements ISelectDevice
+public class SelectDeviceFragment extends SwipeRefreshFragment implements ISelectDevice
 {
     private ArrayList<BluetoothDevice> devices;
     private ArrayAdapter<BluetoothDevice> deviceListAdapter;
     private SelectDevicePresenter selectDevicePresenter;
-    private SwipeRefreshLayout swipeRefreshLayout;
 
     private final int ENABLE_BLUETOOTH = 1;     //need a positivite int
 
@@ -42,21 +39,12 @@ public class SelectDeviceFragment extends Fragment implements ISelectDevice
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
+        super.onViewCreated(view, savedInstanceState);
         TextView fragmentHeader = view.findViewById(R.id.fragmentHeading);
         if(fragmentHeader != null)
         {
             fragmentHeader.setText("Select Device");
         }
-
-        swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayoutSelectDevice);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
-        {
-            @Override
-            public void onRefresh()
-            {
-
-            }
-        });
 
         devices = new ArrayList<>();
 
@@ -124,6 +112,14 @@ public class SelectDeviceFragment extends Fragment implements ISelectDevice
 
         deviceListView.setAdapter(deviceListAdapter);
 
+        SetUpBluetooth();
+    }
+
+    /**
+     * This method used to prevent code duplication
+     */
+    private void SetUpBluetooth()
+    {
         selectDevicePresenter.InitialiseBluetoothLE(getContext());
         boolean bluetoothEnabled = selectDevicePresenter.IsBluetoothEnabled();
         if(!bluetoothEnabled)
@@ -141,6 +137,16 @@ public class SelectDeviceFragment extends Fragment implements ISelectDevice
         {
             selectDevicePresenter.ScanDeviceLE(true);
         }
+    }
+
+    @Override
+    public void RefreshUI(@NonNull View view)
+    {
+        selectDevicePresenter.StopScan();
+        devices.clear();
+        deviceListAdapter.notifyDataSetChanged();
+
+        SetUpBluetooth();
     }
 
     @Override

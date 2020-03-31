@@ -8,9 +8,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
-public class SleepFragment extends Fragment
+public class SleepFragment extends SwipeRefreshFragment
 {
     @Nullable
     @Override
@@ -22,10 +21,17 @@ public class SleepFragment extends Fragment
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
+        super.onViewCreated(view, savedInstanceState);
         TextView fragmentHeading = view.findViewById(R.id.fragmentHeading);
         if(fragmentHeading != null)
         {
             fragmentHeading.setText("Sleep");
         }
+    }
+
+    @Override
+    public void RefreshUI(@NonNull View view)
+    {
+
     }
 }

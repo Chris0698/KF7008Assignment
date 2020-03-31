@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity
                         }
                         case R.id.navDrawAbout:
                         {
-                            fragment = new MyDeviceFragment();
+                            fragment = new AboutFragment();
                             bottomNavigationView.getMenu().clear();
                             bottomNavigationView.inflateMenu(R.menu.fitness_nav_menu);
                         }
