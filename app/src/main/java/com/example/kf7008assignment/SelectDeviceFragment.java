@@ -1,5 +1,6 @@
 package com.example.kf7008assignment;
 
+import android.app.Activity;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,10 +26,9 @@ public class SelectDeviceFragment extends Fragment implements ISelectDevice
 {
     private ArrayList<BluetoothDevice> devices;
     private ArrayAdapter<BluetoothDevice> deviceListAdapter;
-
     private SelectDevicePresenter selectDevicePresenter;
 
-    private final int ENABLE_BLUETOOTH = 1;
+    private final int ENABLE_BLUETOOTH = 1;     //need a positivite int
 
     @Nullable
     @Override
@@ -86,9 +86,8 @@ public class SelectDeviceFragment extends Fragment implements ISelectDevice
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id)
                 {
-                    //Log.i("TAG", "Click " + position);
                     BluetoothDevice bluetoothDevice = devices.get(position);
-                    selectDevicePresenter.ConnectToDevice(bluetoothDevice, getContext(), getActivity());
+                    selectDevicePresenter.ConnectToDevice(bluetoothDevice, getContext());
                 }
             });
         }
@@ -135,10 +134,13 @@ public class SelectDeviceFragment extends Fragment implements ISelectDevice
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
     {
-        //pop up box will appear to enabe BT
+        //pop up box will appear to enable BT
         if(requestCode == ENABLE_BLUETOOTH)
         {
-            selectDevicePresenter.ScanDeviceLE(true);
+            if(resultCode == Activity.RESULT_OK)
+            {
+                selectDevicePresenter.ScanDeviceLE(true);
+            }
         }
     }
 
@@ -150,8 +152,15 @@ public class SelectDeviceFragment extends Fragment implements ISelectDevice
     }
 
     @Override
-    public void AlertUserOfConnection()
+    public void GoToMyDeviceFragment()
     {
-
+        FragmentManager fragmentManager = getFragmentManager();
+        if(fragmentManager != null)
+        {
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragmentContainer, new MyDeviceFragment());
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+        }
     }
 }

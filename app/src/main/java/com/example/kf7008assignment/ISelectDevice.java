@@ -6,5 +6,5 @@ public interface ISelectDevice
 {
     void AddDeviceToList(BluetoothDevice bluetoothDevice);
 
-    void AlertUserOfConnection();
+    void GoToMyDeviceFragment();
 }

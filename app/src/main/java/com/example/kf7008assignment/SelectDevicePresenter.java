@@ -1,6 +1,6 @@
 package com.example.kf7008assignment;
 
-import android.app.Activity;
+import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
@@ -9,6 +9,7 @@ import android.bluetooth.le.BluetoothLeScanner;
 import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanResult;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 
@@ -42,12 +43,7 @@ public class SelectDevicePresenter
 
     public boolean IsBluetoothEnabled()
     {
-        if(bluetoothAdapter == null)
-        {
-            //no BT support
-            return false;
-        }
-        else if(!bluetoothAdapter.isEnabled())
+        if(!bluetoothAdapter.isEnabled() || bluetoothAdapter == null)
         {
             return false;
         }
@@ -101,7 +97,7 @@ public class SelectDevicePresenter
         }
     };
 
-    public void ConnectToDevice(BluetoothDevice bluetoothDevice, Context context, Activity activity)
+    public void ConnectToDevice(BluetoothDevice bluetoothDevice, Context context)
     {
         //we going to fake connection here
         StopScan();
@@ -115,6 +111,28 @@ public class SelectDevicePresenter
 
         ConnectedDevice.GetInstance().SetConnectedDevice(bluetoothDevice);
 
-       // new DeviceConnectedAlertScreen().show();
+        //new DeviceConnectedAlertScreen().show();
+        new AlertDialog.Builder(context).setTitle("Device Connected")
+                .setMessage("Successful connected to device: " + bluetoothDevice.getName())
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        //go to my device
+                        iSelectDevice.GoToMyDeviceFragment();
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        //disconnect
+                        ConnectedDevice.GetInstance().SetConnectedDevice(null);
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 }
