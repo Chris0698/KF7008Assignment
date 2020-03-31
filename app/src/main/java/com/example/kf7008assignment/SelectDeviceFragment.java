@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
 
@@ -27,6 +28,7 @@ public class SelectDeviceFragment extends Fragment implements ISelectDevice
     private ArrayList<BluetoothDevice> devices;
     private ArrayAdapter<BluetoothDevice> deviceListAdapter;
     private SelectDevicePresenter selectDevicePresenter;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     private final int ENABLE_BLUETOOTH = 1;     //need a positivite int
 
@@ -45,6 +47,16 @@ public class SelectDeviceFragment extends Fragment implements ISelectDevice
         {
             fragmentHeader.setText("Select Device");
         }
+
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayoutSelectDevice);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
+        {
+            @Override
+            public void onRefresh()
+            {
+
+            }
+        });
 
         devices = new ArrayList<>();
 
