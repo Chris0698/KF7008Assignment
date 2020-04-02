@@ -1,5 +1,8 @@
 package com.example.kf7008assignment;
 
+import android.app.AlertDialog;
+import android.content.Context;
+
 public class MyGoalsPresenter
 {
     private IMyGoals iMyGoals;
@@ -14,9 +17,14 @@ public class MyGoalsPresenter
         this.iMyGoals = iMyGoals;
     }
 
-    public void UpdateGoals(int steps, int sleep, int calories)
+    public void UpdateGoals(int steps, int sleep, int calories, Context context)
     {
-
+        new AlertDialog.Builder(context)
+                .setTitle("Goals Updated")
+                .setMessage("Your goals have been updated!")
+                .setPositiveButton(android.R.string.ok, null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 
     public void SetGoals()

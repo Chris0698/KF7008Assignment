@@ -78,13 +78,8 @@ public class SelectDevicePresenter
         }
         else
         {
-            StopScan();
+            bluetoothLeScanner.stopScan(scanCallback);
         }
-    }
-
-    public void StopScan()
-    {
-        bluetoothLeScanner.stopScan(scanCallback);
     }
 
     private ScanCallback scanCallback = new ScanCallback()
@@ -97,41 +92,49 @@ public class SelectDevicePresenter
         }
     };
 
-    public void ConnectToDevice(BluetoothDevice bluetoothDevice, Context context)
+    public void ConnectToDevice(final BluetoothDevice bluetoothDevice, Context context)
     {
-        //we going to fake connection here
-        StopScan();
-
-          /*
-        if(bluetoothGatt == null)
-        {
-            bluetoothGatt = bluetoothDevice.connectGatt(context, false, someCallBack)
-        }
-         */
-
-        ConnectedDevice.GetInstance().SetConnectedDevice(bluetoothDevice);
-
-        //new DeviceConnectedAlertScreen().show();
-        new AlertDialog.Builder(context).setTitle("Device Connected")
-                .setMessage("Successful connected to device: " + bluetoothDevice.getName())
+//        boolean result = iSelectDevice.AlertDialog("Connect to: " + bluetoothDevice.getName()
+//                , "Do You want to connect to: " + bluetoothDevice.getName());
+//        Log.i("TAG", "Result: " + result);
+//        if(result)
+//        {
+//            ScanDeviceLE(false);
+//
+//            ConnectedDevice.GetInstance().SetConnectedDevice(bluetoothDevice);
+//
+//              /*
+//            if(bluetoothGatt == null)
+//            {
+//                bluetoothGatt = bluetoothDevice.connectGatt(context, false, someCallBack)
+//            }
+//             */
+//
+//              iSelectDevice.GoToMyDeviceFragment();
+//        }
+        new AlertDialog.Builder(context).setTitle("Connect to: " + bluetoothDevice.getName())
+                .setMessage("Do you want to connect to: " + bluetoothDevice.getName())
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which)
                     {
+                        ScanDeviceLE(false);
+
+                        ConnectedDevice.GetInstance().SetConnectedDevice(bluetoothDevice);
+
+                          /*
+                        if(bluetoothGatt == null)
+                        {
+                            bluetoothGatt = bluetoothDevice.connectGatt(context, false, someCallBack)
+                        }
+                         */
+
                         //go to my device
                         iSelectDevice.GoToMyDeviceFragment();
                     }
                 })
-                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which)
-                    {
-                        //disconnect
-                        ConnectedDevice.GetInstance().SetConnectedDevice(null);
-                    }
-                })
+                .setNegativeButton(android.R.string.cancel, null)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
     }

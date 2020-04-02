@@ -9,8 +9,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class StepsFragment extends SwipeRefreshFragment
+public class StepsFragment extends SwipeRefreshFragment implements ISteps
 {
+    private StepsPresenter stepsPresenter;
+
+    private TextView goalsTextView;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
@@ -27,11 +31,28 @@ public class StepsFragment extends SwipeRefreshFragment
         {
             fragmentHeading.setText("Steps");
         }
+
+        try
+        {
+            stepsPresenter = new StepsPresenter(this);
+        }
+        catch (Exception ex){}
+
+        goalsTextView = view.findViewById(R.id.goalTextView);
+
+        stepsPresenter.getGoal();
     }
 
     @Override
     public void RefreshUI(@NonNull View view)
     {
+        stepsPresenter.getGoal();
+        stepsPresenter.SyncConnectedDevice();
+    }
 
+    @Override
+    public void UpdateStepsGoal(String text)
+    {
+        goalsTextView.setText(text);
     }
 }

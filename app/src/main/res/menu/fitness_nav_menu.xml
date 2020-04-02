@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/fitnessNavFootsteps" android:title="Steps"/>
+    <item
+        android:id="@+id/fitnessNavFootsteps"
+        android:title="Steps"
+        android:icon="@drawable/ic_action_steps"/>
 
-    <item android:id="@+id/fitnessNavCalories" android:title="Calories"/>
+    <item
+        android:id="@+id/fitnessNavCalories"
+        android:title="Calories"
+        android:icon="@drawable/ic_action_calories"/>
 
-    <item android:id="@+id/fitnessNavSleep" android:title="Sleep"/>
+    <item
+        android:id="@+id/fitnessNavSleep"
+        android:title="Sleep"
+        android:icon="@drawable/ic_action_sleep"/>
 
-    <item android:id="@+id/fitnessNavMyGoals" android:title="My Goals"/>
+    <item
+        android:id="@+id/fitnessNavMyGoals"
+        android:title="Goals"
+        android:icon="@drawable/ic_action_goal"/>
 
-    <item android:id="@+id/fitnessNavMyDevice" android:title="My Device"/>
+    <item
+        android:id="@+id/fitnessNavMyDevice"
+        android:title="Device"
+        android:icon="@drawable/ic_action_watch"/>
 </menu>

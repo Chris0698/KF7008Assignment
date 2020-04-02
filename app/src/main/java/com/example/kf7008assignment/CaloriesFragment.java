@@ -9,8 +9,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class CaloriesFragment extends SwipeRefreshFragment
+public class CaloriesFragment extends SwipeRefreshFragment implements ICalories
 {
+    private CaloriesPresenter caloriesPresenter;
+
+    private TextView goalTextView;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
@@ -27,11 +31,28 @@ public class CaloriesFragment extends SwipeRefreshFragment
         {
             fragmentHeading.setText("Calories");
         }
+
+        try
+        {
+            caloriesPresenter = new CaloriesPresenter(this);
+        }
+        catch (Exception ex){}
+
+        goalTextView = view.findViewById(R.id.goalTextView);
+
+        caloriesPresenter.GetGoal();
     }
 
     @Override
     public void RefreshUI(@NonNull View view)
     {
+        caloriesPresenter.GetGoal();
+        caloriesPresenter.SyncConnectedDevice();
+    }
 
+    @Override
+    public void UpdateGoal(String text)
+    {
+        goalTextView.setText(text);
     }
 }

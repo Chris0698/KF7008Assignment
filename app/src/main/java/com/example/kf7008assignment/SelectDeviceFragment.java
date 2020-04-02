@@ -1,13 +1,16 @@
 package com.example.kf7008assignment;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.bluetooth.BluetoothDevice;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -28,6 +31,7 @@ public class SelectDeviceFragment extends SwipeRefreshFragment implements ISelec
     private SelectDevicePresenter selectDevicePresenter;
 
     private final int ENABLE_BLUETOOTH = 1;     //need a positivite int
+    private boolean dialogResult;
 
     @Nullable
     @Override
@@ -56,7 +60,7 @@ public class SelectDeviceFragment extends SwipeRefreshFragment implements ISelec
                 @Override
                 public void onClick(View v)
                 {
-                    selectDevicePresenter.StopScan();
+                    selectDevicePresenter.ScanDeviceLE(false);
                     FragmentManager fragmentManager = getFragmentManager();
                     if(fragmentManager != null)
                     {
@@ -78,7 +82,7 @@ public class SelectDeviceFragment extends SwipeRefreshFragment implements ISelec
 
         }
 
-        ListView deviceListView = view.findViewById(R.id.myDevicesList);
+        final ListView deviceListView = view.findViewById(R.id.myDevicesList);
         if(deviceListView != null)
         {
             deviceListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -88,6 +92,24 @@ public class SelectDeviceFragment extends SwipeRefreshFragment implements ISelec
                 {
                     BluetoothDevice bluetoothDevice = devices.get(position);
                     selectDevicePresenter.ConnectToDevice(bluetoothDevice, getContext());
+                }
+            });
+
+            //fix to prevent scroll refresh happening when scrolling up the list
+            deviceListView.setOnScrollListener(new AbsListView.OnScrollListener()
+            {
+                @Override
+                public void onScrollStateChanged(AbsListView view, int scrollState)
+                { /*no implementation*/}
+
+                @Override
+                public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount)
+                {
+                    if(deviceListView.getChildAt(0) != null)
+                    {
+                        boolean enabled = deviceListView.getFirstVisiblePosition() == 0 && deviceListView.getChildAt(0).getTop() == 0;
+                        swipeRefreshLayout.setEnabled(enabled);
+                    }
                 }
             });
         }
@@ -142,7 +164,6 @@ public class SelectDeviceFragment extends SwipeRefreshFragment implements ISelec
     @Override
     public void RefreshUI(@NonNull View view)
     {
-        selectDevicePresenter.StopScan();
         devices.clear();
         deviceListAdapter.notifyDataSetChanged();
 
@@ -180,5 +201,34 @@ public class SelectDeviceFragment extends SwipeRefreshFragment implements ISelec
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         }
+    }
+
+    @Override
+    public boolean AlertDialog(String title, String message)
+    {
+//        new AlertDialog.Builder(getActivity())
+//                .setTitle(title)
+//                .setMessage(message)
+//                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+//                {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which)
+//                    {
+//                        dialogResult = true;
+//                    }
+//                })
+//                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener()
+//                {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which)
+//                    {
+//                        dialogResult = false;
+//                    }
+//                })
+//        .show();
+//
+//        return dialogResult;
+
+        return dialogResult;
     }
 }

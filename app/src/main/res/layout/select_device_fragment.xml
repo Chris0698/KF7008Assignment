@@ -32,7 +32,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Back"
-            android:layout_gravity="bottom"/>
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="60sp"/>
 
         <TextView
             android:id="@+id/textView7"
@@ -41,6 +42,8 @@
             android:text="Pull the top to refresh the list if required."
             android:layout_marginTop="80sp"
             android:layout_marginLeft="10sp"/>
+
+
 
 
     </FrameLayout>

@@ -9,8 +9,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class SleepFragment extends SwipeRefreshFragment
+public class SleepFragment extends SwipeRefreshFragment implements ISleep
 {
+    private SleepPresenter sleepPresenter;
+
+    private TextView goalTextView;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
@@ -27,11 +31,26 @@ public class SleepFragment extends SwipeRefreshFragment
         {
             fragmentHeading.setText("Sleep");
         }
+
+        goalTextView = view.findViewById(R.id.goalTextView);
+
+        try
+        {
+            sleepPresenter = new SleepPresenter(this);
+        }
+        catch (Exception ex){}
     }
 
     @Override
     public void RefreshUI(@NonNull View view)
     {
+        sleepPresenter.UpdateGoal();
+        sleepPresenter.SyncConnectedDevice();
+    }
 
+    @Override
+    public void UpdateGoal(String text)
+    {
+        goalTextView.setText(text);
     }
 }

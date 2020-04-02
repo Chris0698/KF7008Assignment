@@ -1,5 +1,6 @@
 package com.example.kf7008assignment;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,7 +69,7 @@ public class MyGoalsFragment extends Fragment implements IMyGoals
                         int calories = 0;
                         int sleep = 0;
 
-                        myGoalsPresenter.UpdateGoals(steps, sleep, calories);
+                        myGoalsPresenter.UpdateGoals(steps, sleep, calories, getContext());
                     }
                     catch (Exception ex)
                     {
