@@ -14,10 +14,10 @@ public class SleepPresenter
         this.iSleep = iSleep;
     }
 
-    public void UpdateGoal()
+    public void GetGoal()
     {
         int goal = 0;
-        iSleep.UpdateGoal("Current Sleep Goal" + goal);
+        iSleep.UpdateGoal("Current Sleep Goal: " + goal);
     }
 
     public void SyncConnectedDevice()

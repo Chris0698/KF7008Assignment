@@ -39,12 +39,14 @@ public class SleepFragment extends SwipeRefreshFragment implements ISleep
             sleepPresenter = new SleepPresenter(this);
         }
         catch (Exception ex){}
+
+        sleepPresenter.GetGoal();
     }
 
     @Override
     public void RefreshUI(@NonNull View view)
     {
-        sleepPresenter.UpdateGoal();
+        sleepPresenter.GetGoal();
         sleepPresenter.SyncConnectedDevice();
     }
 

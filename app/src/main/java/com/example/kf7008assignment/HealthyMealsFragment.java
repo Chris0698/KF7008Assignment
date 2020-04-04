@@ -8,10 +8,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
-public class HealthyMealsFragment extends Fragment
+public class HealthyMealsFragment extends SwipeRefreshFragment implements IHealthyMeals
 {
+    private HealthyMealsPresenter healthyMealsPresenter;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
@@ -27,5 +28,17 @@ public class HealthyMealsFragment extends Fragment
         {
             fragmentHeader.setText("Healthy Meals");
         }
+
+        try
+        {
+            healthyMealsPresenter = new HealthyMealsPresenter(this);
+        }
+        catch (Exception ex){}
+    }
+
+    @Override
+    public void RefreshUI(@NonNull View view)
+    {
+        healthyMealsPresenter.GetNewMeals();
     }
 }
