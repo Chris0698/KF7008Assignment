@@ -9,14 +9,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include layout="@layout/fragment_base"/>
-
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Select a device to connect to"
-            android:layout_marginTop="50sp"
+            android:layout_marginTop="70sp"
+            android:layout_marginLeft="10sp"/>
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pull the top to refresh the list if required."
+            android:layout_marginTop="110sp"
             android:layout_marginLeft="10sp"/>
 
 
@@ -24,7 +30,7 @@
             android:id="@+id/myDevicesList"
             android:layout_width="match_parent"
             android:layout_height="500dp"
-            android:layout_marginTop="100sp"
+            android:layout_marginTop="130sp"
             android:layout_marginBottom="100sp" />
 
         <Button
@@ -34,17 +40,5 @@
             android:text="Back"
             android:layout_gravity="bottom"
             android:layout_marginBottom="60sp"/>
-
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pull the top to refresh the list if required."
-            android:layout_marginTop="80sp"
-            android:layout_marginLeft="10sp"/>
-
-
-
-
     </FrameLayout>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

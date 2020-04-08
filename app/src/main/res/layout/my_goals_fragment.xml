@@ -5,22 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/fragment_base" />
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="View your goals here"
-        android:layout_marginTop="50sp"
+        android:layout_marginTop="70sp"
         android:layout_marginLeft="10sp"/>
 
 <!--    for stats-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80sp">
-
+        android:layout_marginTop="90sp">
 
         <TextView
             android:id="@+id/textView10"

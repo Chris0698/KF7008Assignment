@@ -7,7 +7,7 @@
 
     <item
         android:id="@+id/navDrawMyHealth"
-        android:title="Diet"
+        android:title="Nutrition"
         android:icon="@drawable/ic_action_food"/>
 
     <item

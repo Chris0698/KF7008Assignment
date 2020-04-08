@@ -17,7 +17,7 @@ public abstract class SwipeRefreshFragment extends Fragment
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
-        final View view1 = view;    //this is a hack cause if view is used, then a compiler error happens
+        final View view1 = view;    //this is a hack cause if method arguement view is used, then a compiler error happens
         final SwipeRefreshLayout swipeRefreshLayout = view1.findViewById(R.id.swipeRefreshLayout);
         this.swipeRefreshLayout = swipeRefreshLayout;
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()

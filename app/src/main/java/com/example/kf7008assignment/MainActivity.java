@@ -88,8 +88,6 @@ public class MainActivity extends AppCompatActivity
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit();
 
-                    drawerLayout.closeDrawer(GravityCompat.START);
-
                     return true;
                 }
             });
@@ -133,6 +131,8 @@ public class MainActivity extends AppCompatActivity
                     fragmentTransaction.replace(R.id.fragmentContainer, fragment);
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit();
+
+                    drawerLayout.closeDrawer(GravityCompat.START);
 
                     return true;
                 }
