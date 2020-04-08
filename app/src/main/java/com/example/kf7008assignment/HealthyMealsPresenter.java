@@ -2,16 +2,16 @@ package com.example.kf7008assignment;
 
 public class HealthyMealsPresenter
 {
-    private IHealthyMeals iHealthyMeals;
+    private IHealthyMealsPresenter iHealthyMealsPresenter;
 
-    public HealthyMealsPresenter(IHealthyMeals iHealthyMeals) throws Exception
+    public HealthyMealsPresenter(IHealthyMealsPresenter iHealthyMealsPresenter) throws Exception
     {
-        if(iHealthyMeals == null)
+        if(iHealthyMealsPresenter == null)
         {
             throw new Exception();
         }
 
-        this.iHealthyMeals = iHealthyMeals;
+        this.iHealthyMealsPresenter = iHealthyMealsPresenter;
     }
 
     public void GetNewMeals()

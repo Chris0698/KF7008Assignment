@@ -5,16 +5,16 @@ import android.content.Context;
 
 public class MyGoalsPresenter
 {
-    private IMyGoals iMyGoals;
+    private IMyGoalsPresenter iMyGoalsPresenter;
 
-    public MyGoalsPresenter(IMyGoals iMyGoals) throws Exception
+    public MyGoalsPresenter(IMyGoalsPresenter iMyGoalsPresenter) throws Exception
     {
-        if(iMyGoals == null)
+        if(iMyGoalsPresenter == null)
         {
             throw new Exception();
         }
 
-        this.iMyGoals = iMyGoals;
+        this.iMyGoalsPresenter = iMyGoalsPresenter;
     }
 
     public void UpdateGoals(int steps, int sleep, int calories, Context context)
@@ -30,16 +30,16 @@ public class MyGoalsPresenter
     public void SetGoals()
     {
         //get the goals then set the text fields
-        iMyGoals.SetCaloriesTextView("0");
-        iMyGoals.SetSleepTextView("0");
-        iMyGoals.SetStepsTextView("0");
+        iMyGoalsPresenter.SetCaloriesTextView("0");
+        iMyGoalsPresenter.SetSleepTextView("0");
+        iMyGoalsPresenter.SetStepsTextView("0");
     }
 
     public void GetStatsAchievedCount()
     {
-        iMyGoals.SetCaloriesGoalTextView("0");
-        iMyGoals.SetSleepGoalTextView("0");
-        iMyGoals.SetStepsGoalTextView("0");
+        iMyGoalsPresenter.SetCaloriesGoalTextView("0");
+        iMyGoalsPresenter.SetSleepGoalTextView("0");
+        iMyGoalsPresenter.SetStepsGoalTextView("0");
     }
 
 }

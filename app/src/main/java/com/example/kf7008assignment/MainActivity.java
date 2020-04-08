@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity
                     {
                         case R.id.fitnessNavFootsteps:
                         {
-                            fragment = new StepsFragment();
+                            fragment = new StepsPresenterFragment();
                             break;
                         }
                         case R.id.fitnessNavCalories:
@@ -51,32 +51,32 @@ public class MainActivity extends AppCompatActivity
                         }
                         case R.id.fitnessNavSleep:
                         {
-                            fragment = new SleepFragment();
+                            fragment = new SleepPresenterFragment();
                             break;
                         }
                         case R.id.fitnessNavMyGoals:
                         {
-                            fragment = new MyGoalsFragment();
+                            fragment = new MyGoalsPresenterFragment();
                             break;
                         }
                         case R.id.fitnessNavMyDevice:
                         {
-                            fragment = new MyDeviceFragment();
+                            fragment = new MyDevicePresenterFragment();
                             break;
                         }
                         case R.id.healthyNavFoodLog:
                         {
-                            fragment = new FoodLogFragment();
+                            fragment = new FoodLogPresenterFragment();
                             break;
                         }
                         case R.id.healthyNavHealthyMeals:
                         {
-                            fragment = new HealthyMealsFragment();
+                            fragment = new HealthyMealsPresenterFragment();
                             break;
                         }
                         default:
                         {
-                            fragment = new StepsFragment();
+                            fragment = new StepsPresenterFragment();
                             Log.i("TAG", "Unknown nav option");
                         }
                     }
@@ -106,14 +106,14 @@ public class MainActivity extends AppCompatActivity
                     {
                         case R.id.navDrawMyDevice:
                         {
-                            fragment = new MyDeviceFragment();
+                            fragment = new MyDevicePresenterFragment();
                             bottomNavigationView.getMenu().clear();
                             bottomNavigationView.inflateMenu(R.menu.fitness_nav_menu);
                             break;
                         }
                         case R.id.navDrawMyHealth:
                         {
-                            fragment = new FoodLogFragment();
+                            fragment = new FoodLogPresenterFragment();
                             bottomNavigationView.getMenu().clear();
                             bottomNavigationView.inflateMenu(R.menu.health_nav_menu);
                             break;

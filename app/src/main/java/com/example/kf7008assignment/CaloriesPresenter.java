@@ -2,22 +2,22 @@ package com.example.kf7008assignment;
 
 public class CaloriesPresenter
 {
-    private ICalories iCalories;
+    private ICaloriesPresenter iCaloriesPresenter;
 
-    public CaloriesPresenter(ICalories iCalories) throws Exception
+    public CaloriesPresenter(ICaloriesPresenter iCaloriesPresenter) throws Exception
     {
-        if(iCalories == null)
+        if(iCaloriesPresenter == null)
         {
             throw new Exception()   ;
         }
 
-        this.iCalories = iCalories;
+        this.iCaloriesPresenter = iCaloriesPresenter;
     }
 
     public void GetGoal()
     {
         int goal = 0;
-        iCalories.UpdateGoal("Current Calories Goal: " + goal);
+        iCaloriesPresenter.UpdateGoal("Current Calories Goal: " + goal);
     }
 
     public void SyncConnectedDevice()

@@ -4,16 +4,16 @@ import android.bluetooth.BluetoothDevice;
 
 public class MyDevicePresenter
 {
-    private IMyDevice iMyDevice;
+    private IMyDevicePresenter iMyDevicePresenter;
 
-    public MyDevicePresenter(IMyDevice iMyDevice) throws Exception
+    public MyDevicePresenter(IMyDevicePresenter iMyDevicePresenter) throws Exception
     {
-        if(iMyDevice == null)
+        if(iMyDevicePresenter == null)
         {
             throw new Exception();
         }
 
-        this.iMyDevice = iMyDevice;
+        this.iMyDevicePresenter = iMyDevicePresenter;
     }
 
     public void GetConnectedDeviceStatus()
@@ -22,15 +22,15 @@ public class MyDevicePresenter
         if(connectedDevice == null)
         {
             //no device connected
-            iMyDevice.SetButtonText("Connect To Device");
-            iMyDevice.SetDeviceName("Device Name: No Device Connected");
-            iMyDevice.SetDeviceAddress("Device Address: No Device Connected");
+            iMyDevicePresenter.SetButtonText("Connect To Device");
+            iMyDevicePresenter.SetDeviceName("Device Name: No Device Connected");
+            iMyDevicePresenter.SetDeviceAddress("Device Address: No Device Connected");
         }
         else
         {
-            iMyDevice.SetButtonText("Disconnect From Device");
-            iMyDevice.SetDeviceName("Device Name: " + connectedDevice.getName());
-            iMyDevice.SetDeviceAddress("Device Address: " + connectedDevice.getAddress());
+            iMyDevicePresenter.SetButtonText("Disconnect From Device");
+            iMyDevicePresenter.SetDeviceName("Device Name: " + connectedDevice.getName());
+            iMyDevicePresenter.SetDeviceAddress("Device Address: " + connectedDevice.getAddress());
         }
     }
 
@@ -42,8 +42,8 @@ public class MyDevicePresenter
     public void DisconnectFromDevice()
     {
         ConnectedDevice.GetInstance().SetConnectedDevice(null);
-        iMyDevice.SetButtonText("Connect To Device");
-        iMyDevice.SetDeviceName("Device Name: No Device Connected");
-        iMyDevice.SetDeviceAddress("Device Address: No Device Connected");
+        iMyDevicePresenter.SetButtonText("Connect To Device");
+        iMyDevicePresenter.SetDeviceName("Device Name: No Device Connected");
+        iMyDevicePresenter.SetDeviceAddress("Device Address: No Device Connected");
     }
 }

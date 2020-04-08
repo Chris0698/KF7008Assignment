@@ -15,20 +15,20 @@ import android.util.Log;
 
 public class SelectDevicePresenter
 {
-    private ISelectDevice iSelectDevice;
+    private ISelectDevicePresenter iSelectDevicePresenter;
 
     private BluetoothAdapter bluetoothAdapter;
     private BluetoothLeScanner bluetoothLeScanner;
     private BluetoothGatt bluetoothGatt;    //used for device connection
 
-    public SelectDevicePresenter(ISelectDevice iSelectDevice) throws Exception
+    public SelectDevicePresenter(ISelectDevicePresenter iSelectDevicePresenter) throws Exception
     {
-        if(iSelectDevice == null)
+        if(iSelectDevicePresenter == null)
         {
             throw new Exception();
         }
 
-        this.iSelectDevice = iSelectDevice;
+        this.iSelectDevicePresenter = iSelectDevicePresenter;
     }
 
     public void InitialiseBluetoothLE(Context context)
@@ -88,7 +88,7 @@ public class SelectDevicePresenter
         public void onScanResult(int callbackType, ScanResult result)
         {
             Log.i("TAG", "Device Found: " + result.getDevice().getName() + " " + result.getDevice().getAddress());
-            iSelectDevice.AddDeviceToList(result.getDevice());
+            iSelectDevicePresenter.AddDeviceToList(result.getDevice());
         }
     };
 
@@ -131,7 +131,7 @@ public class SelectDevicePresenter
                          */
 
                         //go to my device
-                        iSelectDevice.GoToMyDeviceFragment();
+                        iSelectDevicePresenter.GoToMyDeviceFragment();
                     }
                 })
                 .setNegativeButton(android.R.string.cancel, null)

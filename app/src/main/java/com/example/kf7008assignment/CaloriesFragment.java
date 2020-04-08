@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class CaloriesFragment extends SwipeRefreshFragment implements ICalories
+public class CaloriesFragment extends SwipeRefreshFragment implements ICaloriesPresenter
 {
     private CaloriesPresenter caloriesPresenter;
 

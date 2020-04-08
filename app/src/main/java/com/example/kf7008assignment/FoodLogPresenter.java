@@ -2,15 +2,15 @@ package com.example.kf7008assignment;
 
 public class FoodLogPresenter
 {
-    private IFoodLog iFoodLog;
+    private IFoodLogPresenter iFoodLogPresenter;
 
-    public FoodLogPresenter(IFoodLog iFoodLog) throws Exception
+    public FoodLogPresenter(IFoodLogPresenter iFoodLogPresenter) throws Exception
     {
-        if(iFoodLog == null)
+        if(iFoodLogPresenter == null)
         {
             throw new Exception();
         }
 
-        this.iFoodLog = iFoodLog;
+        this.iFoodLogPresenter = iFoodLogPresenter;
     }
 }

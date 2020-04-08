@@ -1,26 +1,24 @@
 package com.example.kf7008assignment;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 public class StepsPresenter
 {
-    private ISteps iSteps;
+    private IStepsPresenter iStepsPresenter;
 
-    public StepsPresenter(ISteps iSteps) throws Exception
+    public StepsPresenter(IStepsPresenter iStepsPresenter) throws Exception
     {
-        if(iSteps == null)
+        if(iStepsPresenter == null)
         {
             throw new Exception();
         }
 
-        this.iSteps = iSteps;
+        this.iStepsPresenter = iStepsPresenter;
     }
 
     public void getGoal()
     {
         int stepsGoal = 0;
 
-        iSteps.UpdateStepsGoal("Current Steps Goal: " + stepsGoal);
+        iStepsPresenter.UpdateStepsGoal("Current Steps Goal: " + stepsGoal);
     }
 
     public void SyncConnectedDevice()
