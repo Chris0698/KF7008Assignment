@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class HealthyMealsFragment extends SwipeRefreshFragment implements IHealthyMeals
 {
@@ -23,14 +24,10 @@ public class HealthyMealsFragment extends SwipeRefreshFragment implements IHealt
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
-        TextView fragmentHeader = view.findViewById(R.id.fragmentHeading);
-        if(fragmentHeader != null)
-        {
-            fragmentHeader.setText("Healthy Meals");
-        }
-
         try
         {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Healthy Meals");
+
             healthyMealsPresenter = new HealthyMealsPresenter(this);
         }
         catch (Exception ex){}

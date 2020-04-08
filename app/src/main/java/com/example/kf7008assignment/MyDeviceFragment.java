@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -35,14 +36,11 @@ public class MyDeviceFragment extends Fragment implements IMyDevice
     {
         deviceNameTextView = view.findViewById(R.id.deviceNameTextView);
         deviceAddressTextView = view.findViewById(R.id.deviceAddressTextView);
-        TextView fragmentHeader = view.findViewById(R.id.fragmentHeading);
-        if(fragmentHeader != null)
-        {
-            fragmentHeader.setText("My Device");
-        }
 
         try
         {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("My Device");
+
             myDevicePresenter = new MyDevicePresenter(this);
         }
         catch (Exception ex)

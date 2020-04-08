@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -44,11 +45,6 @@ public class SelectDeviceFragment extends SwipeRefreshFragment implements ISelec
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
-        TextView fragmentHeader = view.findViewById(R.id.fragmentHeading);
-        if(fragmentHeader != null)
-        {
-            fragmentHeader.setText("Select Device");
-        }
 
         devices = new ArrayList<>();
 
@@ -75,6 +71,8 @@ public class SelectDeviceFragment extends SwipeRefreshFragment implements ISelec
 
         try
         {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Select Device");
+
             selectDevicePresenter = new SelectDevicePresenter(this);
         }
         catch (Exception ex)
@@ -226,8 +224,6 @@ public class SelectDeviceFragment extends SwipeRefreshFragment implements ISelec
 //                    }
 //                })
 //        .show();
-//
-//        return dialogResult;
 
         return dialogResult;
     }

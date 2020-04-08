@@ -1,7 +1,11 @@
 package com.example.kf7008assignment;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -16,6 +20,7 @@ import com.google.android.material.navigation.NavigationView;
 public class MainActivity extends AppCompatActivity
 {
     private BottomNavigationView bottomNavigationView;
+    private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -83,6 +88,8 @@ public class MainActivity extends AppCompatActivity
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit();
 
+                    drawerLayout.closeDrawer(GravityCompat.START);
+
                     return true;
                 }
             });
@@ -130,6 +137,35 @@ public class MainActivity extends AppCompatActivity
                     return true;
                 }
             });
+        }
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        drawerLayout = findViewById(R.id.drawerLayout);
+
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle
+                                                         (
+                                                             this,
+                                                             drawerLayout,
+                                                             toolbar,
+                                                             R.string.navDrawOpen,
+                                                             R.string.navDrawClose);
+
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        if(drawerLayout.isDrawerOpen(GravityCompat.START))
+        {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        else
+        {
+            super.onBackPressed();
         }
     }
 }

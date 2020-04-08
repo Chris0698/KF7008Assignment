@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class CaloriesFragment extends SwipeRefreshFragment implements ICalories
 {
@@ -26,14 +27,11 @@ public class CaloriesFragment extends SwipeRefreshFragment implements ICalories
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
-        TextView fragmentHeading = view.findViewById(R.id.fragmentHeading);
-        if(fragmentHeading != null)
-        {
-            fragmentHeading.setText("Calories");
-        }
 
         try
         {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Calories");
+
             caloriesPresenter = new CaloriesPresenter(this);
         }
         catch (Exception ex){}

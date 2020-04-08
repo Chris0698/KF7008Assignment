@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class SleepFragment extends SwipeRefreshFragment implements ISleep
 {
@@ -26,16 +27,13 @@ public class SleepFragment extends SwipeRefreshFragment implements ISleep
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
-        TextView fragmentHeading = view.findViewById(R.id.fragmentHeading);
-        if(fragmentHeading != null)
-        {
-            fragmentHeading.setText("Sleep");
-        }
 
         goalTextView = view.findViewById(R.id.goalTextView);
 
         try
         {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Sleep");
+
             sleepPresenter = new SleepPresenter(this);
         }
         catch (Exception ex){}

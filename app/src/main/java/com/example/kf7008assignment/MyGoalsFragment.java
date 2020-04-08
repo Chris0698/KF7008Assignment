@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 public class MyGoalsFragment extends Fragment implements IMyGoals
@@ -34,14 +35,10 @@ public class MyGoalsFragment extends Fragment implements IMyGoals
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
-        TextView fragmentHeader = view.findViewById(R.id.fragmentHeading);
-        if(fragmentHeader != null)
-        {
-            fragmentHeader.setText("My Goals");
-        }
-
         try
         {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("My Goals");
+
             myGoalsPresenter = new MyGoalsPresenter(this);
         }
         catch (Exception ex) {}

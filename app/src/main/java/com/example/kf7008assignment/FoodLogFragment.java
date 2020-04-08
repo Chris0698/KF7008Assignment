@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 public class FoodLogFragment extends Fragment implements IFoodLog
@@ -28,14 +29,10 @@ public class FoodLogFragment extends Fragment implements IFoodLog
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
-        TextView fragmentHeader = view.findViewById(R.id.fragmentHeading);
-        if(fragmentHeader != null)
-        {
-            fragmentHeader.setText("Food Log");
-        }
-
         try
         {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Food Log");
+
             foodLogPresenter = new FoodLogPresenter(this);
         }
         catch (Exception ex) {}

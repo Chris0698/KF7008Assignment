@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class StepsFragment extends SwipeRefreshFragment implements ISteps
 {
@@ -26,14 +28,11 @@ public class StepsFragment extends SwipeRefreshFragment implements ISteps
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
-        TextView fragmentHeading = view.findViewById(R.id.fragmentHeading);
-        if(fragmentHeading != null)
-        {
-            fragmentHeading.setText("Steps");
-        }
 
         try
         {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Steps");
+
             stepsPresenter = new StepsPresenter(this);
         }
         catch (Exception ex){}

@@ -22,10 +22,6 @@ public class AboutFragment extends Fragment
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
-        TextView fragmentHeading = view.findViewById(R.id.fragmentHeading);
-        if(fragmentHeading != null)
-        {
-            fragmentHeading.setText("About");
-        }
+
     }
 }
