@@ -63,7 +63,7 @@ public class MyDevicePresenterFragment extends Fragment implements IMyDevicePres
                         if(fragmentManager != null)
                         {
                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                            fragmentTransaction.replace(R.id.fragmentContainer, new SelectDevicePresenterFragment());
+                            fragmentTransaction.replace(R.id.fragmentContainer, new SelectDeviceFragment());
                             fragmentTransaction.addToBackStack(null);
                             fragmentTransaction.commit();
                         }

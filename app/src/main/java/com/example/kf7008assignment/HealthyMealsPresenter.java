@@ -18,5 +18,8 @@ public class HealthyMealsPresenter
     {
         //for the assignment this method is blank, but in real use
         //new meals would be downloaded from a web source from this method
+
+        FoodItem foodItem = new FoodItem("Pizza", "A pizza", 100);
+        iHealthyMealsPresenter.AddFoodItem(foodItem);
     }
 }
