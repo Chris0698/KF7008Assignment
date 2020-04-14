@@ -1,6 +1,7 @@
 package com.example.kf7008assignment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,7 @@ public class HealthyMealsFragment extends SwipeRefreshFragment implements IHealt
     {
         super.onViewCreated(view, savedInstanceState);
 
-        ListView healthyMealList = view.findViewById(R.id.healthyMealsListView);
+        final ListView healthyMealList = view.findViewById(R.id.healthyMealsListView);
         if(healthyMealList != null)
         {
             healthyMealList.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -43,7 +44,9 @@ public class HealthyMealsFragment extends SwipeRefreshFragment implements IHealt
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id)
                 {
-
+                    FoodItem foodItem = foodList.get(position);
+                    SelectedHealthyMealDialog dialog = new SelectedHealthyMealDialog();
+                    dialog.ShowDialog(getActivity(), foodItem);
                 }
             });
 
@@ -56,7 +59,11 @@ public class HealthyMealsFragment extends SwipeRefreshFragment implements IHealt
                 @Override
                 public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount)
                 {
-
+                    if(healthyMealList.getChildAt(0) != null)
+                    {
+                        boolean enabled = healthyMealList.getFirstVisiblePosition() == 0 && healthyMealList.getChildAt(0).getTop() == 0;
+                        swipeRefreshLayout.setEnabled(enabled);
+                    }
                 }
             });
         }
@@ -74,11 +81,13 @@ public class HealthyMealsFragment extends SwipeRefreshFragment implements IHealt
                 TextView foodCalories = view.findViewById(android.R.id.text2);
 
                 foodName.setText(foodList.get(position).GetName());
-                foodCalories.setText(foodList.get(position).GetCalories());
+                foodCalories.setText("Calories: " + foodList.get(position).GetCalories());
 
                 return view;
             }
         };
+
+        healthyMealList.setAdapter(healthMealListViewAdapter);
 
         try
         {
@@ -88,12 +97,18 @@ public class HealthyMealsFragment extends SwipeRefreshFragment implements IHealt
 
             healthyMealsPresenter.GetNewMeals();
         }
-        catch (Exception ex){}
+        catch (Exception ex)
+        {
+            Log.i("TAG", "Exception: " + ex.getMessage());
+            ex.printStackTrace();
+        }
     }
 
     @Override
     public void RefreshUI(@NonNull View view)
     {
+        foodList.clear();
+        healthMealListViewAdapter.notifyDataSetChanged();
         healthyMealsPresenter.GetNewMeals();
     }
 

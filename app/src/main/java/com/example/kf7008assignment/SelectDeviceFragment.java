@@ -28,7 +28,7 @@ public class SelectDeviceFragment extends SwipeRefreshFragment implements ISelec
     private ArrayAdapter<BluetoothDevice> deviceListAdapter;
     private SelectDevicePresenter selectDevicePresenter;
 
-    private final int ENABLE_BLUETOOTH = 1;     //need a positivite int
+    private final int ENABLE_BLUETOOTH = 1;     //need a positive int
     private boolean dialogResult;
 
     @Nullable

@@ -16,7 +16,7 @@ public class HealthyMealsPresenter
 
     public void GetNewMeals()
     {
-        //for the assignment this method is blank, but in real use
+        //for the assignment this method is blank, (with the exception of a fake meal) but in real use
         //new meals would be downloaded from a web source from this method
 
         FoodItem foodItem = new FoodItem("Pizza", "A pizza", 100);

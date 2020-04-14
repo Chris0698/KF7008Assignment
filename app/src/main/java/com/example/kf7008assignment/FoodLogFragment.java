@@ -30,14 +30,6 @@ public class FoodLogFragment extends Fragment implements IFoodLogPresenter
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
-        try
-        {
-            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Food Log");
-
-            foodLogPresenter = new FoodLogPresenter(this);
-        }
-        catch (Exception ex) {}
-
         calendarView = view.findViewById(R.id.calenderView);
         if(calendarView != null)
         {
@@ -58,5 +50,13 @@ public class FoodLogFragment extends Fragment implements IFoodLogPresenter
                 }
             });
         }
+
+        try
+        {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Food Log");
+
+            foodLogPresenter = new FoodLogPresenter(this);
+        }
+        catch (Exception ex) {}
     }
 }

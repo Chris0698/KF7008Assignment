@@ -23,8 +23,23 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="300sp"
+        android:layout_height="400sp"
         android:layout_marginTop="200sp"
         android:id="@+id/foodLogFoodList"/>
+
+    <Button
+        android:id="@+id/foodLogAddButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Item"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="90sp"/>
+
+    <Button
+        android:id="@+id/foodLogBackButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:layout_gravity="bottom"/>
 
 </FrameLayout>

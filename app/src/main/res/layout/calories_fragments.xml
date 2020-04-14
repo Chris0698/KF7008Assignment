@@ -17,6 +17,22 @@
             android:layout_marginTop="70sp"
             android:text="Current steps Goal:" />
 
+        <TextView
+            android:id="@+id/currentMonthTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="110sp"
+            android:text="Month + Year"
+            android:layout_gravity="center_horizontal"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginRight="10sp"
+            android:text="->"
+            android:layout_marginTop="100sp"/>
+
     </FrameLayout>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
