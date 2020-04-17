@@ -6,11 +6,11 @@ public class MyDevicePresenter
 {
     private IMyDevicePresenter iMyDevicePresenter;
 
-    public MyDevicePresenter(IMyDevicePresenter iMyDevicePresenter) throws Exception
+    public MyDevicePresenter(IMyDevicePresenter iMyDevicePresenter)
     {
         if(iMyDevicePresenter == null)
         {
-            throw new Exception();
+            throw new IllegalStateException("Presenter can't be null");
         }
 
         this.iMyDevicePresenter = iMyDevicePresenter;

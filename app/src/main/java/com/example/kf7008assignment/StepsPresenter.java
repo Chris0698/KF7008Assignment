@@ -4,11 +4,11 @@ public class StepsPresenter
 {
     private IStepsPresenter iStepsPresenter;
 
-    public StepsPresenter(IStepsPresenter iStepsPresenter) throws Exception
+    public StepsPresenter(IStepsPresenter iStepsPresenter)
     {
         if(iStepsPresenter == null)
         {
-            throw new Exception();
+            throw new IllegalStateException("Presenter can't be null");
         }
 
         this.iStepsPresenter = iStepsPresenter;
@@ -23,6 +23,6 @@ public class StepsPresenter
 
     public void SyncConnectedDevice()
     {
-
+        //for the assignment this is blank
     }
 }

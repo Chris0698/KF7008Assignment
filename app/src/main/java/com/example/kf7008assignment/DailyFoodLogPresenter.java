@@ -8,7 +8,7 @@ public class DailyFoodLogPresenter
     {
         if(iDailyFoodLogPresenter == null)
         {
-            throw new IllegalStateException();
+            throw new IllegalStateException("Presenter can't be null");
         }
 
         this.iDailyFoodLogPresenter = iDailyFoodLogPresenter;
@@ -17,7 +17,10 @@ public class DailyFoodLogPresenter
     public void GetFoodItem()
     {
         //recorded food is gotten here
-
-        iDailyFoodLogPresenter.AddFoodItem();
+        boolean recordFound = false;
+        if(recordFound)
+        {
+            iDailyFoodLogPresenter.AddFoodItem(new FoodItem("Food", "Food", 0));
+        }
     }
 }

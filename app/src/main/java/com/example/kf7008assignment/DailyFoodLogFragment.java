@@ -1,9 +1,11 @@
 package com.example.kf7008assignment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -23,12 +25,16 @@ public class DailyFoodLogFragment extends Fragment implements IDailyFoodLogPrese
     private int month;
     private int year;
 
+    private int calories = 0;
+
     private TextView totalCaloriesTextView;
-    private ListView foodList;
+    private TextView foodLogDateTextView;
+    private ListView foodListView;
 
     private DailyFoodLogPresenter dailyFoodLogPresenter;
 
-    private ArrayList<FoodItem> foodItems;
+    private ArrayList<FoodItem> foodList;
+    private ArrayAdapter<FoodItem> foodItemArrayAdapter;
 
     @Nullable
     @Override
@@ -41,10 +47,10 @@ public class DailyFoodLogFragment extends Fragment implements IDailyFoodLogPrese
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
         totalCaloriesTextView = view.findViewById(R.id.foodLogTotalCaloriesTextView);
-        foodList = view.findViewById(R.id.foodLogFoodList);
-        foodItems = new ArrayList<>();
+        foodListView = view.findViewById(R.id.foodLogFoodList);
+        foodList = new ArrayList<>();
 
-        TextView foodLogDateTextView = view.findViewById(R.id.foodLogDateTextView);
+        foodLogDateTextView = view.findViewById(R.id.foodLogDateTextView);
         if(foodLogDateTextView != null)
         {
             foodLogDateTextView.setText("Food Log for: ");
@@ -67,7 +73,7 @@ public class DailyFoodLogFragment extends Fragment implements IDailyFoodLogPrese
             });
         }
 
-        Button addFoodButton = view.findViewById(R.id.foodLogBackButton);
+        final Button addFoodButton = view.findViewById(R.id.foodLogAddButton);
         if(addFoodButton != null)
         {
             addFoodButton.setOnClickListener(new View.OnClickListener()
@@ -75,17 +81,30 @@ public class DailyFoodLogFragment extends Fragment implements IDailyFoodLogPrese
                 @Override
                 public void onClick(View v)
                 {
-
+                    AddFoodItemDialog addFoodItemDialog = new AddFoodItemDialog();
+                    addFoodItemDialog.ShowDialog(getActivity());
                 }
             });
         }
 
-        int calories = 0;
-        for(FoodItem item : foodItems)
+        foodItemArrayAdapter = new ArrayAdapter<FoodItem>(getActivity(), android.R.layout.simple_list_item_2, android.R.id.text1, foodList)
         {
-            calories = item.GetCalories();
-        }
-        totalCaloriesTextView.setText("Total Calories: " + calories);
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent)
+            {
+                View view = super.getView(position, convertView, parent);
+                TextView foodName = view.findViewById(android.R.id.text1);
+                TextView caloriesLabel = view.findViewById(android.R.id.text2);
+
+                foodName.setText(foodList.get(position).GetName());
+                caloriesLabel.setText("Calories: " + foodList.get(position).GetCalories());
+
+                return view;
+            }
+        };
+
+        foodListView.setAdapter(foodItemArrayAdapter);
 
         try
         {
@@ -93,11 +112,19 @@ public class DailyFoodLogFragment extends Fragment implements IDailyFoodLogPrese
 
             dailyFoodLogPresenter = new DailyFoodLogPresenter(this);
 
+            //populate the food list here if there a record for the date passed through
             dailyFoodLogPresenter.GetFoodItem();
+
+            for(FoodItem item : foodList)
+            {
+                calories = item.GetCalories();
+            }
+
+            totalCaloriesTextView.setText("Total Calories: " + calories);
         }
         catch (Exception ex)
         {
-
+            ex.printStackTrace();
         }
     }
 
@@ -109,8 +136,11 @@ public class DailyFoodLogFragment extends Fragment implements IDailyFoodLogPrese
     }
 
     @Override
-    public void AddFoodItem()
+    public void AddFoodItem(FoodItem foodItem)
     {
-
+        calories = calories + foodItem.GetCalories();
+        foodList.add(foodItem);
+        totalCaloriesTextView.setText("Total Calories: " + calories);
+        foodItemArrayAdapter.notifyDataSetChanged();
     }
 }

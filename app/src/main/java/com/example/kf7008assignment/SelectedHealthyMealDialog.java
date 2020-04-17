@@ -12,11 +12,15 @@ public class SelectedHealthyMealDialog
     {
         if(foodItem == null)
         {
-            throw new IllegalStateException();
+            throw new IllegalStateException("Food Item can't be null in selected healthy meal dialog");
+        }
+        if(activity == null)
+        {
+            throw new IllegalStateException("Activity can't be null in selected healthy meal dialog");
         }
 
         final Dialog dialog = new Dialog(activity);
-        dialog.setContentView(R.layout.selected_healthy_meal);
+        dialog.setContentView(R.layout.alert_selected_healthy_meal);
 
         TextView headingTitle = dialog.findViewById(R.id.selectedHealthyMealHeading);
         if(headingTitle != null)
