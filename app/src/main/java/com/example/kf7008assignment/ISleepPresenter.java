@@ -7,4 +7,6 @@ public interface ISleepPresenter
     void UpdateGoal(String text);
 
     void AddSleepEntry(Entry entry);
+
+    void SetCounterGoalAchieved(int counter);
 }

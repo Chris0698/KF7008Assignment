@@ -30,9 +30,9 @@ public class MyGoalsPresenter
     public void SetGoals()
     {
         //get the goals then set the text fields
-        iMyGoalsPresenter.SetCaloriesTextView("0");
-        iMyGoalsPresenter.SetSleepTextView("0");
-        iMyGoalsPresenter.SetStepsTextView("0");
+        iMyGoalsPresenter.SetCaloriesTextView("500");
+        iMyGoalsPresenter.SetSleepTextView("8");
+        iMyGoalsPresenter.SetStepsTextView("3000");
     }
 
     public void GetStatsAchievedCount()

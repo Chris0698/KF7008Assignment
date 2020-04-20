@@ -18,30 +18,14 @@ import com.github.mikephil.charting.data.LineDataSet;
 
 import java.util.ArrayList;
 
-public class SleepFragment extends SwipeRefreshFragment implements ISleepPresenter
+public class SleepFragment extends FitnessActivityFragmentBase implements ISleepPresenter
 {
     private SleepPresenter sleepPresenter;
-    private ArrayList<Entry> sleepEntry;
-    private TextView goalTextView;
-
-    private int month;
-    private int year;
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
-    {
-        return inflater.inflate(R.layout.fitness_activity_fragment, container, false);
-    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
-
-        goalTextView = view.findViewById(R.id.goalTextView);
-        LineChart lineChart = view.findViewById(R.id.lineChart);
-        sleepEntry = new ArrayList<>();
 
         try
         {
@@ -49,16 +33,7 @@ public class SleepFragment extends SwipeRefreshFragment implements ISleepPresent
 
             sleepPresenter = new SleepPresenter(this);
 
-            sleepPresenter.GetGoal();
-
-            sleepPresenter.GetSleepHoursForMonth(month,year);
-
-            LineDataSet lineDataSet = new LineDataSet(sleepEntry, "");
-            LineData lineData = new LineData(lineDataSet);
-            lineChart.setData(lineData);
-            //lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
-            lineDataSet.setValueTextColor(Color.BLACK);
-            lineDataSet.setValueTextSize(10f);
+            GetData();
         }
         catch (Exception ex)
         {
@@ -69,19 +44,39 @@ public class SleepFragment extends SwipeRefreshFragment implements ISleepPresent
     @Override
     public void RefreshUI(@NonNull View view)
     {
+        lineChart.clear();
+        graphEntries.clear();
+        GetData();
+    }
+
+    private void GetData()
+    {
         sleepPresenter.GetGoal();
-        sleepPresenter.SyncConnectedDevice();
+        sleepPresenter.GetSleepHoursForMonth(month, year);
+
+        LineDataSet lineDataSet = new LineDataSet(graphEntries, "");
+        LineData lineData = new LineData(lineDataSet);
+        lineChart.setData(lineData);
+        //lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+        lineDataSet.setValueTextColor(Color.BLACK);
+        lineDataSet.setValueTextSize(10f);
     }
 
     @Override
     public void UpdateGoal(String text)
     {
-        goalTextView.setText(text);
+        currentGoalTextView.setText(text);
     }
 
     @Override
     public void AddSleepEntry(Entry entry)
     {
-        sleepEntry.add(entry);
+        graphEntries.add(entry);
+    }
+
+    @Override
+    public void SetCounterGoalAchieved(int counter)
+    {
+        goalCounterReachedTextView.setText("Number of times goal achieved this month: " + counter);
     }
 }

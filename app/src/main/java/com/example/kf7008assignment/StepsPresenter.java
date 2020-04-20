@@ -69,7 +69,7 @@ public class StepsPresenter
 
         for(Entry entry : entries)
         {
-            if(entry.getY() > goal)
+            if(entry.getY() >= goal)
             {
                 amountAboveTarget++;
             }

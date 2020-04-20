@@ -22,8 +22,8 @@ public class SleepPresenter
 
     public void GetGoal()
     {
-        int goal = 3000;
-        iSleepPresenter.UpdateGoal("Current Sleep Goal: " + goal);
+        int goal = 8;
+        iSleepPresenter.UpdateGoal("Current Sleep Goal: " + goal + " hours.");
     }
 
     public void GetSleepHoursForMonth(int month, int year)
@@ -32,7 +32,9 @@ public class SleepPresenter
         //but for the assignment fake data for all months will be used unless i get round to adding
         //a DB
 
-        int aboveTargetGoal = 0;
+        //Connected Device would also need checked in some way
+
+        int aboveTargetGoalCounter = 0;
 
         ArrayList<Entry> entries = new ArrayList<>();
         entries.add(new Entry(1, 8));
@@ -68,10 +70,15 @@ public class SleepPresenter
 
         for(Entry entry : entries)
         {
-
+            if(entry.getY() >= goal)
+            {
+                aboveTargetGoalCounter++;
+            }
 
             iSleepPresenter.AddSleepEntry(entry);
         }
+
+        iSleepPresenter.SetCounterGoalAchieved(aboveTargetGoalCounter);
     }
 
     public void SyncConnectedDevice()

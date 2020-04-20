@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class CaloriesPresenter
 {
     private ICaloriesPresenter iCaloriesPresenter;
+    private int goal;
 
     public CaloriesPresenter(ICaloriesPresenter iCaloriesPresenter)
     {
@@ -20,7 +21,7 @@ public class CaloriesPresenter
 
     public void GetGoal()
     {
-        int goal = 0;
+        goal = 500;
         iCaloriesPresenter.UpdateGoal("Current Calories Goal: " + goal);
     }
 
@@ -29,6 +30,8 @@ public class CaloriesPresenter
         //really  this would go to the data access layer to get the data from a database
         //but for the assignment fake data for all months will be used unless i get round to adding
         //a DB
+
+        int amountAboveGoalCounter = 0;
 
         ArrayList<Entry> entries = new ArrayList<>();
         entries.add(new Entry(1, 100));
@@ -64,8 +67,15 @@ public class CaloriesPresenter
 
         for(Entry entry : entries)
         {
+            if(entry.getY() >= goal)
+            {
+                amountAboveGoalCounter++;
+            }
+
             iCaloriesPresenter.AddCaloriesEntry(entry);
         }
+
+        iCaloriesPresenter.SetCounterGoalAchieved(amountAboveGoalCounter);
     }
 
     public void SyncConnectedDevice()

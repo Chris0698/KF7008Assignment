@@ -7,4 +7,6 @@ public interface ICaloriesPresenter
     void UpdateGoal(String text);
 
     void AddCaloriesEntry(Entry entry);
+
+    void SetCounterGoalAchieved(int counter);
 }
