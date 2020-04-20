@@ -6,8 +6,16 @@
     android:id="@+id/swipeRefreshLayout">
 
     <FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="->"
+            android:layout_gravity="left"
+            android:layout_marginTop="100sp"
+            android:layout_marginLeft="10sp"/>
 
         <TextView
             android:id="@+id/goalTextView"
@@ -32,6 +40,14 @@
             android:layout_marginRight="10sp"
             android:text="->"
             android:layout_marginTop="100sp"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:layout_width="match_parent"
+            android:layout_height="450sp"
+            android:id="@+id/lineChart"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="210sp"
+            android:layout_marginBottom="100sp"/>
 
     </FrameLayout>
 

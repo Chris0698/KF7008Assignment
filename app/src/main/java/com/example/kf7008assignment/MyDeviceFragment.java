@@ -12,11 +12,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-public class MyDevicePresenterFragment extends Fragment implements IMyDevicePresenter
+public class MyDeviceFragment extends Fragment implements IMyDevicePresenter
 {
     private TextView deviceNameTextView;
     private TextView deviceAddressTextView;
@@ -36,17 +37,6 @@ public class MyDevicePresenterFragment extends Fragment implements IMyDevicePres
     {
         deviceNameTextView = view.findViewById(R.id.deviceNameTextView);
         deviceAddressTextView = view.findViewById(R.id.deviceAddressTextView);
-
-        try
-        {
-            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("My Device");
-
-            myDevicePresenter = new MyDevicePresenter(this);
-        }
-        catch (Exception ex)
-        {
-            Log.i("TAG", "My Device Presenter failed to create");
-        }
 
         connectButton = view.findViewById(R.id.deviceButton);
         if(connectButton != null)
@@ -76,8 +66,18 @@ public class MyDevicePresenterFragment extends Fragment implements IMyDevicePres
             });
         }
 
-        myDevicePresenter.GetConnectedDeviceStatus();
+        try
+        {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("My Device");
 
+            myDevicePresenter = new MyDevicePresenter(this);
+
+            myDevicePresenter.GetConnectedDeviceStatus();
+        }
+        catch (Exception ex)
+        {
+            Log.i("TAG", "My Device Presenter failed to create");
+        }
     }
 
     @Override

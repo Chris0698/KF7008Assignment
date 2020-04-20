@@ -58,7 +58,7 @@ public class SelectDeviceFragment extends SwipeRefreshFragment implements ISelec
                     if(fragmentManager != null)
                     {
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.fragmentContainer, new MyDevicePresenterFragment());
+                        fragmentTransaction.replace(R.id.fragmentContainer, new MyDeviceFragment());
                         fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.commit();
                     }
@@ -192,7 +192,7 @@ public class SelectDeviceFragment extends SwipeRefreshFragment implements ISelec
         if(fragmentManager != null)
         {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainer, new MyDevicePresenterFragment());
+            fragmentTransaction.replace(R.id.fragmentContainer, new MyDeviceFragment());
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         }

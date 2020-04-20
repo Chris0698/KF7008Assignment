@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <item android:title="Light Theme" android:id="@+id/toolbarLight"/>
+
+    <item android:title="Dark Theme" android:id="@+id/toolbarDark"/>
+
+</menu>

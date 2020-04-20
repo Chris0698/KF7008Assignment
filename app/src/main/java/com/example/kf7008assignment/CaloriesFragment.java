@@ -1,5 +1,6 @@
 package com.example.kf7008assignment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,11 +11,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+
+import java.util.ArrayList;
+
 public class CaloriesFragment extends SwipeRefreshFragment implements ICaloriesPresenter
 {
     private CaloriesPresenter caloriesPresenter;
-
     private TextView goalTextView;
+    private ArrayList<Entry> caloriesEntry;
 
     @Nullable
     @Override
@@ -28,17 +36,31 @@ public class CaloriesFragment extends SwipeRefreshFragment implements ICaloriesP
     {
         super.onViewCreated(view, savedInstanceState);
 
+        goalTextView = view.findViewById(R.id.goalTextView);
+        LineChart lineChart = view.findViewById(R.id.lineChart);
+        caloriesEntry = new ArrayList<>();
+
         try
         {
             ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Calories");
 
             caloriesPresenter = new CaloriesPresenter(this);
+
+            caloriesPresenter.GetGoal();
+
+            caloriesPresenter.GetCaloriesForMonth(0 ,0);
+
+            LineDataSet lineDataSet = new LineDataSet(caloriesEntry, "");
+            LineData lineData = new LineData(lineDataSet);
+            lineChart.setData(lineData);
+            //lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+            lineDataSet.setValueTextColor(Color.BLACK);
+            lineDataSet.setValueTextSize(10f);
         }
-        catch (Exception ex){}
+        catch (Exception ex)
+        {
 
-        goalTextView = view.findViewById(R.id.goalTextView);
-
-        caloriesPresenter.GetGoal();
+        }
     }
 
     @Override
@@ -52,5 +74,11 @@ public class CaloriesFragment extends SwipeRefreshFragment implements ICaloriesP
     public void UpdateGoal(String text)
     {
         goalTextView.setText(text);
+    }
+
+    @Override
+    public void AddCaloriesEntry(Entry entry)
+    {
+        caloriesEntry.add(entry);
     }
 }
