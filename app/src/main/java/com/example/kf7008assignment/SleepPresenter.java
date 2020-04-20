@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class SleepPresenter
 {
     private ISleepPresenter iSleepPresenter;
+    private int goal;
 
     public SleepPresenter(ISleepPresenter iSleepPresenter) throws Exception
     {
@@ -16,11 +17,12 @@ public class SleepPresenter
         }
 
         this.iSleepPresenter = iSleepPresenter;
+        goal = 0;
     }
 
     public void GetGoal()
     {
-        int goal = 0;
+        int goal = 3000;
         iSleepPresenter.UpdateGoal("Current Sleep Goal: " + goal);
     }
 
@@ -29,6 +31,8 @@ public class SleepPresenter
         //really  this would go to the data access layer to get the data from a database
         //but for the assignment fake data for all months will be used unless i get round to adding
         //a DB
+
+        int aboveTargetGoal = 0;
 
         ArrayList<Entry> entries = new ArrayList<>();
         entries.add(new Entry(1, 8));
@@ -64,6 +68,8 @@ public class SleepPresenter
 
         for(Entry entry : entries)
         {
+
+
             iSleepPresenter.AddSleepEntry(entry);
         }
     }

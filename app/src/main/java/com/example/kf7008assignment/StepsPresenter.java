@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class StepsPresenter
 {
     private IStepsPresenter iStepsPresenter;
+    private int goal;
 
     public StepsPresenter(IStepsPresenter iStepsPresenter)
     {
@@ -16,11 +17,12 @@ public class StepsPresenter
         }
 
         this.iStepsPresenter = iStepsPresenter;
+        goal = 0;
     }
 
     public void getGoal()
     {
-        int stepsGoal = 0;
+        int stepsGoal = 3000;
 
         iStepsPresenter.UpdateStepsGoal("Current Steps Goal: " + stepsGoal);
     }
@@ -30,6 +32,8 @@ public class StepsPresenter
         //really  this would go to the data access layer to get the data from a database
         //but for the assignment fake data for all months will be used unless i get round to adding
         //a DB
+
+        int amountAboveTarget = 0;
 
         ArrayList<Entry> entries = new ArrayList<>();
         entries.add(new Entry(1, 100));
@@ -65,8 +69,15 @@ public class StepsPresenter
 
         for(Entry entry : entries)
         {
+            if(entry.getY() > goal)
+            {
+                amountAboveTarget++;
+            }
+
             iStepsPresenter.AddStepsEntry(entry);
         }
+
+        iStepsPresenter.SetCounterGoalAchieved(amountAboveTarget);
     }
 
     public void SyncConnectedDevice()

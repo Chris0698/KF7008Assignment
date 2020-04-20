@@ -7,4 +7,6 @@ public interface IStepsPresenter
     void UpdateStepsGoal(String text);
 
     void AddStepsEntry(Entry entry);
+
+    void SetCounterGoalAchieved(int counter);
 }

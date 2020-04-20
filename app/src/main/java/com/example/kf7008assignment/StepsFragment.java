@@ -2,48 +2,25 @@ package com.example.kf7008assignment;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
-import java.util.ArrayList;
 
-public class StepsFragment extends SwipeRefreshFragment implements IStepsPresenter
+public class StepsFragment extends FitnessActivityFragmentBase implements IStepsPresenter
 {
     private StepsPresenter stepsPresenter;
-    private TextView goalsTextView;
-    private ArrayList<Entry> stepsEntry;
-
-    private int month;
-    private int year;
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
-    {
-        return inflater.inflate(R.layout.fitness_activity_fragment, container, false);
-    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
-
-        goalsTextView = view.findViewById(R.id.goalTextView);
-        LineChart lineChart = view.findViewById(R.id.lineChart);
-
-        stepsEntry = new ArrayList<>();
 
         try
         {
@@ -51,41 +28,51 @@ public class StepsFragment extends SwipeRefreshFragment implements IStepsPresent
 
             stepsPresenter = new StepsPresenter(this);
 
-            stepsPresenter.getGoal();
-
-            stepsPresenter.GetStepsForMonth(month, year);
-
-            LineDataSet lineDataSet = new LineDataSet(stepsEntry, "");
-            LineData lineData = new LineData(lineDataSet);
-            lineChart.setData(lineData);
-            //lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
-            lineDataSet.setValueTextColor(Color.BLACK);
-            lineDataSet.setValueTextSize(10f);
+            GetData();
         }
         catch (Exception ex)
         {
 
         }
-
-
     }
 
     @Override
     public void RefreshUI(@NonNull View view)
     {
+        //stepsPresenter.SyncConnectedDevice();
+        lineChart.clear();
+        graphEntries.clear();
+        GetData();
+    }
+
+    private void GetData()
+    {
         stepsPresenter.getGoal();
-        stepsPresenter.SyncConnectedDevice();
+        stepsPresenter.GetStepsForMonth(month, year);
+        LineDataSet lineDataSet = new LineDataSet(graphEntries, "");
+
+        LineData lineData = new LineData(lineDataSet);
+        lineChart.setData(lineData);
+        //lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+        lineDataSet.setValueTextColor(Color.BLACK);
+        lineDataSet.setValueTextSize(10f);
     }
 
     @Override
     public void UpdateStepsGoal(String text)
     {
-        goalsTextView.setText(text);
+        currentGoalTextView.setText(text);
     }
 
     @Override
     public void AddStepsEntry(Entry entry)
     {
-        stepsEntry.add(entry);
+        graphEntries.add(entry);
+    }
+
+    @Override
+    public void SetCounterGoalAchieved(int counter)
+    {
+        goalCounterReachedTextView.setText("Number of times goal achieved this month: " + counter);
     }
 }
