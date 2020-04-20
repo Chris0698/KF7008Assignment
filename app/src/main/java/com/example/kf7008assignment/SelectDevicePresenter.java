@@ -21,11 +21,11 @@ public class SelectDevicePresenter
     private BluetoothLeScanner bluetoothLeScanner;
     private BluetoothGatt bluetoothGatt;    //used for device connection
 
-    public SelectDevicePresenter(ISelectDevicePresenter iSelectDevicePresenter) throws Exception
+    public SelectDevicePresenter(ISelectDevicePresenter iSelectDevicePresenter)
     {
         if(iSelectDevicePresenter == null)
         {
-            throw new Exception();
+            throw new IllegalStateException("Select device presenter cant be null.");
         }
 
         this.iSelectDevicePresenter = iSelectDevicePresenter;

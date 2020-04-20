@@ -53,7 +53,7 @@ public class SelectDeviceFragment extends SwipeRefreshFragment implements ISelec
                 @Override
                 public void onClick(View v)
                 {
-                    selectDevicePresenter.ScanDeviceLE(false);
+                    //selectDevicePresenter.ScanDeviceLE(false);
                     FragmentManager fragmentManager = getFragmentManager();
                     if(fragmentManager != null)
                     {
@@ -64,17 +64,6 @@ public class SelectDeviceFragment extends SwipeRefreshFragment implements ISelec
                     }
                 }
             });
-        }
-
-        try
-        {
-            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Select Device");
-
-            selectDevicePresenter = new SelectDevicePresenter(this);
-        }
-        catch (Exception ex)
-        {
-
         }
 
         final ListView deviceListView = view.findViewById(R.id.myDevicesList);
@@ -129,6 +118,17 @@ public class SelectDeviceFragment extends SwipeRefreshFragment implements ISelec
 
         deviceListView.setAdapter(deviceListAdapter);
 
+        try
+        {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Select Device");
+
+            selectDevicePresenter = new SelectDevicePresenter(this);
+        }
+        catch (Exception ex)
+        {
+
+        }
+
         SetUpBluetooth();
     }
 
@@ -144,9 +144,8 @@ public class SelectDeviceFragment extends SwipeRefreshFragment implements ISelec
             Intent enableBluetoothIntent = selectDevicePresenter.EnableBluetoothLEIntent();
             if(enableBluetoothIntent != null)
             {
-                //bluetooth is not enabled, turn it on here
-                //A request message will appear to enable BT,
-                //check onActivityResult
+                //bluetooth is not enabled, turn it on here. A request message will appear to enable
+                // BT, check onActivityResult
                 startActivityForResult(enableBluetoothIntent, ENABLE_BLUETOOTH);
             }
         }

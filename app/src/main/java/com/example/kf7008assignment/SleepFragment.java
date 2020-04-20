@@ -31,7 +31,7 @@ public class SleepFragment extends SwipeRefreshFragment implements ISleepPresent
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.steps_fragment, container, false);
+        return inflater.inflate(R.layout.fitness_activity_fragment, container, false);
     }
 
     @Override

@@ -28,7 +28,7 @@ public class CaloriesFragment extends SwipeRefreshFragment implements ICaloriesP
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.calories_fragments, container, false);
+        return inflater.inflate(R.layout.fitness_activity_fragment, container, false);
     }
 
     @Override
