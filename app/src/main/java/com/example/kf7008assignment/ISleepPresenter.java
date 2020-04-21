@@ -9,4 +9,6 @@ public interface ISleepPresenter
     void AddSleepEntry(Entry entry);
 
     void SetCounterGoalAchieved(int counter);
+
+    void SetMonthAndYearTextView(String text);
 }

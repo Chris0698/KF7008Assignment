@@ -33,6 +33,8 @@ public class CaloriesPresenter
 
         int amountAboveGoalCounter = 0;
 
+        String monthString = "------";
+
         ArrayList<Entry> entries = new ArrayList<>();
         entries.add(new Entry(1, 100));
         entries.add(new Entry(2, 50));
@@ -76,6 +78,7 @@ public class CaloriesPresenter
         }
 
         iCaloriesPresenter.SetCounterGoalAchieved(amountAboveGoalCounter);
+        iCaloriesPresenter.SetMonthAndYearTextView(monthString + " " + year);
     }
 
     public void SyncConnectedDevice()

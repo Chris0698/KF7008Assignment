@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +16,7 @@ import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 //By Activity i mean as in excersie activity, not activity in an android dev world
 //ISwipeRefresh implemented here but method is overriden in subclasses
@@ -26,6 +27,7 @@ public abstract class FitnessActivityFragmentBase extends Fragment implements IS
 
     protected TextView currentGoalTextView;
     protected TextView goalCounterReachedTextView;
+    protected TextView currentMonthYearTextView;
 
     protected int month;
     protected int year;
@@ -47,16 +49,56 @@ public abstract class FitnessActivityFragmentBase extends Fragment implements IS
 
         graphEntries = new ArrayList<>();
 
+        year = Calendar.getInstance().get(Calendar.YEAR);
+
+        month = Calendar.getInstance().get(Calendar.MONTH);
+
         lineChart = view.findViewById(R.id.lineChart);
 
         currentGoalTextView = view.findViewById(R.id.goalTextView);
 
         goalCounterReachedTextView = view.findViewById(R.id.timesMonthlyGoalAchievedTextView);
 
+        currentMonthYearTextView = view.findViewById(R.id.currentMonthYearTextView);
+
         this.view = view;
 
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
 
         SwipeRefreshLayout();
+
+        Button previousMonthButton = view.findViewById(R.id.fitnessActivityPreviousMonth);
+        if(previousMonthButton != null)
+        {
+            previousMonthButton.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    month--;
+                    if(month < 0)
+                    {
+                        month = 12;
+                    }
+                }
+            });
+        }
+
+        Button nextMonthButton = view.findViewById(R.id.fitnessActivityNextMonth);
+        if(nextMonthButton != null)
+        {
+            nextMonthButton.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    month++;
+                    if(month > 12)
+                    {
+                        month = 1;
+                    }
+                }
+            });
+        }
     }
 }

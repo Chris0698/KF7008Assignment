@@ -3,22 +3,16 @@ package com.example.kf7008assignment;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-
-import java.util.ArrayList;
 
 public class SleepFragment extends FitnessActivityFragmentBase implements ISleepPresenter
 {
@@ -100,5 +94,11 @@ public class SleepFragment extends FitnessActivityFragmentBase implements ISleep
         {
             Log.i("TAG", "No Swipe refresh :(");
         }
+    }
+
+    @Override
+    public void SetMonthAndYearTextView(String text)
+    {
+        currentMonthYearTextView.setText(text);
     }
 }

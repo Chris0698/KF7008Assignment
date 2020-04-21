@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Select a device to connect to"
-            android:layout_marginTop="70sp"
+            android:layout_marginTop="20sp"
             android:layout_marginLeft="10sp"/>
 
         <TextView
@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pull the top to refresh the list if required."
-            android:layout_marginTop="110sp"
+            android:layout_marginTop="60sp"
             android:layout_marginLeft="10sp"/>
 
 
@@ -30,7 +30,7 @@
             android:id="@+id/myDevicesList"
             android:layout_width="match_parent"
             android:layout_height="500dp"
-            android:layout_marginTop="130sp"
+            android:layout_marginTop="100sp"
             android:layout_marginBottom="100sp" />
 
         <Button

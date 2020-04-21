@@ -9,4 +9,6 @@ public interface IStepsPresenter
     void AddStepsEntry(Entry entry);
 
     void SetCounterGoalAchieved(int counter);
+
+    void SetMonthAndYearTextView(String text);
 }

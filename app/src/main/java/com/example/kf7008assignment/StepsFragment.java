@@ -14,7 +14,6 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
-
 public class StepsFragment extends FitnessActivityFragmentBase implements IStepsPresenter
 {
     private StepsPresenter stepsPresenter;
@@ -96,5 +95,11 @@ public class StepsFragment extends FitnessActivityFragmentBase implements ISteps
         {
             Log.i("TAG", "No Swipe refresh :(");
         }
+    }
+
+    @Override
+    public void SetMonthAndYearTextView(String text)
+    {
+        currentMonthYearTextView.setText(text);
     }
 }

@@ -3,6 +3,7 @@ package com.example.kf7008assignment;
 import com.github.mikephil.charting.data.Entry;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class StepsPresenter
 {
@@ -32,6 +33,8 @@ public class StepsPresenter
         //really  this would go to the data access layer to get the data from a database
         //but for the assignment fake data for all months will be used unless i get round to adding
         //a DB
+
+        String monthString = "";
 
         int amountAboveTarget = 0;
 
@@ -78,6 +81,7 @@ public class StepsPresenter
         }
 
         iStepsPresenter.SetCounterGoalAchieved(amountAboveTarget);
+        iStepsPresenter.SetMonthAndYearTextView(monthString + " " + year);
     }
 
     public void SyncConnectedDevice()

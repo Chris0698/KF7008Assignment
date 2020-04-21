@@ -36,6 +36,8 @@ public class SleepPresenter
 
         int aboveTargetGoalCounter = 0;
 
+        String monthString = "|||||||";
+
         ArrayList<Entry> entries = new ArrayList<>();
         entries.add(new Entry(1, 8));
         entries.add(new Entry(2, 8));
@@ -79,6 +81,7 @@ public class SleepPresenter
         }
 
         iSleepPresenter.SetCounterGoalAchieved(aboveTargetGoalCounter);
+        iSleepPresenter.SetMonthAndYearTextView(monthString + " " + year);
     }
 
     public void SyncConnectedDevice()

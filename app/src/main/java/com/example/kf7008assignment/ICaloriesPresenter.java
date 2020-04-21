@@ -9,4 +9,6 @@ public interface ICaloriesPresenter
     void AddCaloriesEntry(Entry entry);
 
     void SetCounterGoalAchieved(int counter);
+
+    void SetMonthAndYearTextView(String text);
 }

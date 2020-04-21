@@ -14,22 +14,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10sp"
-            android:layout_marginTop="70sp"
+            android:layout_marginTop="20sp"
             android:text="Current steps Goal:" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="->"
+            android:text="-"
             android:layout_gravity="left"
-            android:layout_marginTop="100sp"
-            android:layout_marginLeft="10sp"/>
+            android:layout_marginTop="50sp"
+            android:layout_marginLeft="10sp"
+            android:id="@+id/fitnessActivityPreviousMonth"/>
 
         <TextView
-            android:id="@+id/currentMonthTextView"
+            android:id="@+id/currentMonthYearTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="110sp"
+            android:layout_marginTop="60sp"
             android:text="Month + Year"
             android:layout_gravity="center_horizontal"/>
 
@@ -39,22 +40,23 @@
             android:layout_gravity="end"
             android:layout_marginRight="10sp"
             android:text="->"
-            android:layout_marginTop="100sp"/>
+            android:layout_marginTop="50sp"
+            android:id="@+id/fitnessActivityNextMonth"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="BALH"
             android:id="@+id/timesMonthlyGoalAchievedTextView"
-            android:layout_marginTop="160sp"
+            android:layout_marginTop="110sp"
             android:layout_marginLeft="10sp"/>
 
         <com.github.mikephil.charting.charts.LineChart
             android:layout_width="match_parent"
-            android:layout_height="420sp"
+            android:layout_height="400sp"
             android:id="@+id/lineChart"
-            android:layout_gravity="bottom"
-            android:layout_marginTop="210sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="150sp"
             android:layout_marginBottom="100sp"/>
     </FrameLayout>
 
