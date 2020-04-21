@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,16 +18,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
 
-public class SelectDeviceFragment extends SwipeRefreshFragment implements ISelectDevicePresenter
+public class SelectDeviceFragment extends Fragment implements ISelectDevicePresenter, ISwipeRefresh
 {
     private ArrayList<BluetoothDevice> devices;
     private ArrayAdapter<BluetoothDevice> deviceListAdapter;
     private SelectDevicePresenter selectDevicePresenter;
+    private View view;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     private final int ENABLE_BLUETOOTH = 1;     //need a positive int
     private boolean dialogResult;
@@ -42,6 +47,9 @@ public class SelectDeviceFragment extends SwipeRefreshFragment implements ISelec
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
+
+        this.view = view;
+        SwipeRefreshLayout();
 
         devices = new ArrayList<>();
 
@@ -156,7 +164,28 @@ public class SelectDeviceFragment extends SwipeRefreshFragment implements ISelec
     }
 
     @Override
-    public void RefreshUI(@NonNull View view)
+    public void SwipeRefreshLayout()
+    {
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
+        if(swipeRefreshLayout != null)
+        {
+            swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
+            {
+                @Override
+                public void onRefresh()
+                {
+                    RefreshUI();
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+            });
+        }
+        else
+        {
+            Log.i("TAG", "No Swipe refresh :(");
+        }
+    }
+
+    private void RefreshUI()
     {
         devices.clear();
         deviceListAdapter.notifyDataSetChanged();

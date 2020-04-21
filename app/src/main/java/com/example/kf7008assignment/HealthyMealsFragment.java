@@ -14,12 +14,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.ArrayList;
 
-public class HealthyMealsFragment extends SwipeRefreshFragment implements IHealthyMealsPresenter
+public class HealthyMealsFragment extends Fragment implements IHealthyMealsPresenter, ISwipeRefresh
 {
     private HealthyMealsPresenter healthyMealsPresenter;
+    private View view;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     private ArrayAdapter<FoodItem> healthMealListViewAdapter;
     private ArrayList<FoodItem> foodList;
@@ -35,6 +39,8 @@ public class HealthyMealsFragment extends SwipeRefreshFragment implements IHealt
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
+        this.view = view;
+        SwipeRefreshLayout();
 
         final ListView healthyMealList = view.findViewById(R.id.healthyMealsListView);
         if(healthyMealList != null)
@@ -104,8 +110,7 @@ public class HealthyMealsFragment extends SwipeRefreshFragment implements IHealt
         }
     }
 
-    @Override
-    public void RefreshUI(@NonNull View view)
+    private void RefreshUI()
     {
         foodList.clear();
         healthMealListViewAdapter.notifyDataSetChanged();
@@ -117,5 +122,27 @@ public class HealthyMealsFragment extends SwipeRefreshFragment implements IHealt
     {
         foodList.add(foodItem);
         healthMealListViewAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void SwipeRefreshLayout()
+    {
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
+        if (swipeRefreshLayout != null)
+        {
+            swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
+            {
+                @Override
+                public void onRefresh()
+                {
+                    RefreshUI();
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+            });
+        }
+        else
+        {
+            Log.i("TAG", "No Swipe refresh :(");
+        }
     }
 }
