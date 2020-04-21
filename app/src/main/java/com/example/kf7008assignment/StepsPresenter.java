@@ -22,9 +22,9 @@ public class StepsPresenter
 
     public void getGoal()
     {
-        int stepsGoal = 3000;
+        goal = 3000;
 
-        iStepsPresenter.UpdateStepsGoal("Current Steps Goal: " + stepsGoal);
+        iStepsPresenter.UpdateStepsGoal("Current Steps Goal: " + goal);
     }
 
     public void GetStepsForMonth(int month, int year)

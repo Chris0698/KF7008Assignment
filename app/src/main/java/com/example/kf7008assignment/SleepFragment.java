@@ -2,6 +2,7 @@ package com.example.kf7008assignment;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
@@ -41,8 +43,7 @@ public class SleepFragment extends FitnessActivityFragmentBase implements ISleep
         }
     }
 
-    @Override
-    public void RefreshUI(@NonNull View view)
+    private void RefreshUI()
     {
         lineChart.clear();
         graphEntries.clear();
@@ -78,5 +79,26 @@ public class SleepFragment extends FitnessActivityFragmentBase implements ISleep
     public void SetCounterGoalAchieved(int counter)
     {
         goalCounterReachedTextView.setText("Number of times goal achieved this month: " + counter);
+    }
+
+    @Override
+    public void SwipeRefreshLayout()
+    {
+        if(swipeRefreshLayout != null)
+        {
+            swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
+            {
+                @Override
+                public void onRefresh()
+                {
+                    RefreshUI();
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+            });
+        }
+        else
+        {
+            Log.i("TAG", "No Swipe refresh :(");
+        }
     }
 }

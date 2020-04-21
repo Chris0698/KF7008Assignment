@@ -2,11 +2,13 @@ package com.example.kf7008assignment;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -36,8 +38,7 @@ public class StepsFragment extends FitnessActivityFragmentBase implements ISteps
         }
     }
 
-    @Override
-    public void RefreshUI(@NonNull View view)
+    private void RefreshUI()
     {
         //stepsPresenter.SyncConnectedDevice();
         lineChart.clear();
@@ -74,5 +75,26 @@ public class StepsFragment extends FitnessActivityFragmentBase implements ISteps
     public void SetCounterGoalAchieved(int counter)
     {
         goalCounterReachedTextView.setText("Number of times goal achieved this month: " + counter);
+    }
+
+    @Override
+    public void SwipeRefreshLayout()
+    {
+        if(swipeRefreshLayout != null)
+        {
+            swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
+            {
+                @Override
+                public void onRefresh()
+                {
+                    RefreshUI();
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+            });
+        }
+        else
+        {
+            Log.i("TAG", "No Swipe refresh :(");
+        }
     }
 }

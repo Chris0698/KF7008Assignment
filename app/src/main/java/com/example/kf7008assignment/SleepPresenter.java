@@ -22,7 +22,7 @@ public class SleepPresenter
 
     public void GetGoal()
     {
-        int goal = 8;
+        goal = 8;
         iSleepPresenter.UpdateGoal("Current Sleep Goal: " + goal + " hours.");
     }
 

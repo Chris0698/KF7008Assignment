@@ -4,10 +4,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
@@ -15,7 +18,8 @@ import com.github.mikephil.charting.data.Entry;
 import java.util.ArrayList;
 
 //By Activity i mean as in excersie activity, not activity in an android dev world
-public abstract class FitnessActivityFragmentBase extends SwipeRefreshFragment
+//ISwipeRefresh implemented here but method is overriden in subclasses
+public abstract class FitnessActivityFragmentBase extends Fragment implements ISwipeRefresh
 {
     protected LineChart lineChart;
     protected ArrayList<Entry> graphEntries;
@@ -25,6 +29,9 @@ public abstract class FitnessActivityFragmentBase extends SwipeRefreshFragment
 
     protected int month;
     protected int year;
+
+    protected SwipeRefreshLayout swipeRefreshLayout;
+    protected View view;
 
     @Nullable
     @Override
@@ -45,5 +52,11 @@ public abstract class FitnessActivityFragmentBase extends SwipeRefreshFragment
         currentGoalTextView = view.findViewById(R.id.goalTextView);
 
         goalCounterReachedTextView = view.findViewById(R.id.timesMonthlyGoalAchievedTextView);
+
+        this.view = view;
+
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
+
+        SwipeRefreshLayout();
     }
 }
