@@ -11,12 +11,12 @@
         android:layout_height="wrap_content"
         android:text="Select a date to view your food record for that day."
         android:layout_marginLeft="10sp"
-        android:layout_marginTop="70sp"/>
+        android:layout_marginTop="20sp"/>
 
     <CalendarView
         android:id="@+id/calenderView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="110sp" />
+        android:layout_marginTop="60sp" />
 
 </FrameLayout>

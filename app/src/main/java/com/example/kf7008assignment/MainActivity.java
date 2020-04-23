@@ -1,6 +1,7 @@
 package com.example.kf7008assignment;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -11,10 +12,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CompoundButton;
+import android.widget.ToggleButton;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -169,6 +174,18 @@ public class MainActivity extends AppCompatActivity
         fragmentTransaction.replace(R.id.fragmentContainer, new MyDeviceFragment());
         fragmentTransaction.commit();
         bottomNavigationView.setSelectedItemId(R.id.fitnessNavMyDevice);
+
+
+
+//        final ToggleButton themeToggleButton = findViewById(R.id.themeToggle);
+//        themeToggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+//        {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+//            {
+//
+//            }
+//        });
     }
 
     @Override
@@ -183,6 +200,7 @@ public class MainActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -199,6 +217,8 @@ public class MainActivity extends AppCompatActivity
             case R.id.toolbarDark:
             {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+               // ActionBar actionBar = getSupportActionBar();
+                //actionBar.setBackgroundDrawable(new ColorDrawable((Color.parseColor("#272727"))));
                 break;
             }
             case R.id.toolbarLight:
@@ -210,4 +230,5 @@ public class MainActivity extends AppCompatActivity
 
         return true;
     }
+
 }

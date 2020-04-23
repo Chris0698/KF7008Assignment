@@ -13,13 +13,21 @@
         android:layout_height="match_parent">
 
 <!--        Custom made title bar-->
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:id="@+id/toolbar"
+            android:elevation="4dp"
             android:background="@color/colorPrimary"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+            app:popupTheme="@style/ThemeOverlay.AppCompat.DayNight">
+<!--            <androidx.appcompat.widget.AppCompatToggleButton-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/themeToggle"-->
+<!--                android:layout_gravity="end"-->
+<!--                android:layout_marginRight="10sp"/>-->
+        </com.google.android.material.appbar.MaterialToolbar>
 
     </LinearLayout>
     

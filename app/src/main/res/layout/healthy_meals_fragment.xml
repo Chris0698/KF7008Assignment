@@ -13,13 +13,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Today healthy meals, Swipe to refresh for new suggested."
-            android:layout_marginTop="70sp"
+            android:layout_marginTop="20sp"
             android:layout_marginLeft="10sp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="110sp"
+            android:layout_marginTop="60sp"
             android:layout_marginLeft="10sp"
             android:textSize="20sp"
             android:text="Today Meals"/>
@@ -28,7 +28,7 @@
             android:id="@+id/healthyMealsListView"
             android:layout_width="match_parent"
             android:layout_height="580dp"
-            android:layout_marginTop="150sp" />
+            android:layout_marginTop="90sp" />
 
     </FrameLayout>
 

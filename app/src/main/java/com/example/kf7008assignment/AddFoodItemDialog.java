@@ -8,7 +8,7 @@ import android.widget.EditText;
 
 public class AddFoodItemDialog
 {
-    public void ShowDialog(Activity activity)
+    public void ShowDialog(final Activity activity, final DailyFoodLogFragment foodLogFragment)
     {
         if(activity == null)
         {
@@ -42,8 +42,10 @@ public class AddFoodItemDialog
                 @Override
                 public void onClick(View v)
                 {
-                    //String name = foodNameEditText.getText().toString();
-                   // String calories = foodCaloriesEditText.getText().toString();
+                    String name = foodNameEditText.getText().toString();
+                    String calories = foodCaloriesEditText.getText().toString();
+                    foodLogFragment.AddFoodItem(new FoodItem(name, "", Integer.parseInt(calories)));
+                    dialog.hide();
                 }
             });
         }
