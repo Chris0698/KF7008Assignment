@@ -1,27 +1,32 @@
 package com.example.kf7008assignment;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class AddFoodItemDialog
+public class AddFoodItemDialog extends Dialog
 {
-    public void ShowDialog(final Activity activity, final DailyFoodLogFragment foodLogFragment)
+    public AddFoodItemDialog(Activity activity)
     {
-        if(activity == null)
+        super(activity);
+    }
+
+    public void ShowDialog(final DailyFoodLogFragment foodLogFragment)
+    {
+        if(foodLogFragment == null)
         {
-            throw new IllegalStateException();
+            throw new IllegalStateException("Daily Food Log Fragment is null in AddFoodItemDialog");
         }
 
-        final Dialog dialog = new Dialog(activity);
-        dialog.setContentView(R.layout.alert_add_daily_food);
+        setContentView(R.layout.alert_add_daily_food);
 
-        final EditText foodNameEditText = dialog.findViewById(R.id.alertAddDailyFoodItemFoodNameEditText);
-        final EditText foodCaloriesEditText = dialog.findViewById(R.id.alertAddDailyFoodItemFoodCaloriesEditText);
+        final EditText foodNameEditText = findViewById(R.id.alertAddDailyFoodItemFoodNameEditText);
+        final EditText foodCaloriesEditText = findViewById(R.id.alertAddDailyFoodItemFoodCaloriesEditText);
 
-        Button backButton = dialog.findViewById(R.id.alertAddDailyFoodItemFoodBackButton);
+        Button backButton = findViewById(R.id.alertAddDailyFoodItemFoodBackButton);
         if(backButton != null)
         {
             backButton.setOnClickListener(new View.OnClickListener()
@@ -29,12 +34,12 @@ public class AddFoodItemDialog
                 @Override
                 public void onClick(View v)
                 {
-                    dialog.hide();
+                    hide();
                 }
             });
         }
 
-        Button addButton = dialog.findViewById(R.id.alertAddDailyFoodItemAddButton);
+        Button addButton = findViewById(R.id.alertAddDailyFoodItemAddButton);
         if(addButton != null)
         {
             addButton.setOnClickListener(new View.OnClickListener()
@@ -42,14 +47,34 @@ public class AddFoodItemDialog
                 @Override
                 public void onClick(View v)
                 {
+                    int cals = 0;
+
                     String name = foodNameEditText.getText().toString();
                     String calories = foodCaloriesEditText.getText().toString();
-                    foodLogFragment.AddFoodItem(new FoodItem(name, "", Integer.parseInt(calories)));
-                    dialog.hide();
+
+                    if(calories.length() > 0)
+                    {
+                        cals = Integer.parseInt(calories);
+                    }
+
+                    if(name.length() > 0)
+                    {
+                        foodLogFragment.AddFoodItem(new FoodItem(name, "", cals));
+                        hide();
+                    }
+                    else
+                    {
+                        new AlertDialog.Builder(getContext())
+                                .setTitle("Empty Name")
+                                .setMessage("Name can't be empty")
+                                .setPositiveButton(android.R.string.ok, null)
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+                    }
                 }
             });
         }
 
-        dialog.show();
+        show();
     }
 }

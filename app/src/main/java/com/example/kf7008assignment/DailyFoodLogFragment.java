@@ -1,6 +1,5 @@
 package com.example.kf7008assignment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -82,8 +81,8 @@ public class DailyFoodLogFragment extends Fragment implements IDailyFoodLogPrese
                 @Override
                 public void onClick(View v)
                 {
-                    AddFoodItemDialog addFoodItemDialog = new AddFoodItemDialog();
-                    addFoodItemDialog.ShowDialog(getActivity(), DailyFoodLogFragment.this);
+                    AddFoodItemDialog addFoodItemDialog = new AddFoodItemDialog(getActivity());
+                    addFoodItemDialog.ShowDialog(DailyFoodLogFragment.this);
                 }
             });
         }
