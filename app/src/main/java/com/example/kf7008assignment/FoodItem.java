@@ -13,6 +13,13 @@ public class FoodItem
         this.name = name;
     }
 
+    public FoodItem(String name, int calories)
+    {
+        this.name = name;
+        description = "";
+        this.calories = calories;
+    }
+
     public String GetName() {return  name;}
 
     public String GetDescription() {return description;}

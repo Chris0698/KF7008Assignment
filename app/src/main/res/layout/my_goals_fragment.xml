@@ -82,7 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
             android:ems="10"
-            android:inputType="number"
+            android:inputType="numberSigned"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.438"
             app:layout_constraintStart_toEndOf="@+id/textView4"

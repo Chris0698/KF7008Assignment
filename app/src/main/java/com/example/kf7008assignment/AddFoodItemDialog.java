@@ -59,7 +59,7 @@ public class AddFoodItemDialog extends Dialog
 
                     if(name.length() > 0)
                     {
-                        foodLogFragment.AddFoodItem(new FoodItem(name, "", cals));
+                        foodLogFragment.AddFoodItem(new FoodItem(name, cals));
                         hide();
                     }
                     else

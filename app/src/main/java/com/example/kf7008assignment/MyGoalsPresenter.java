@@ -19,20 +19,37 @@ public class MyGoalsPresenter
 
     public void UpdateGoals(int steps, int sleep, int calories, Context context)
     {
-        new AlertDialog.Builder(context)
-                .setTitle("Goals Updated")
-                .setMessage("Your goals have been updated!")
-                .setPositiveButton(android.R.string.ok, null)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .show();
+        DatabaseHelper databaseHelper = new DatabaseHelper(context);
+        boolean result = databaseHelper.UpdateGoals(steps, sleep, calories);
+        if(result)
+        {
+            new AlertDialog.Builder(context)
+                    .setTitle("Goals Updated")
+                    .setMessage("Your goals have been updated!")
+                    .setPositiveButton(android.R.string.ok, null)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
+        else
+        {
+            new AlertDialog.Builder(context)
+                    .setTitle("Big Fail")
+                    .setMessage(":(")
+                    .setPositiveButton(android.R.string.ok, null)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
+
     }
 
-    public void SetGoals()
+    public void GetGoals(Context context)
     {
+        DatabaseHelper databaseHelper = new DatabaseHelper(context);
+
         //get the goals then set the text fields
-        iMyGoalsPresenter.SetCaloriesTextView("500");
-        iMyGoalsPresenter.SetSleepTextView("8");
-        iMyGoalsPresenter.SetStepsTextView("3000");
+        iMyGoalsPresenter.SetCaloriesTextView("0");
+        iMyGoalsPresenter.SetSleepTextView("0");
+        iMyGoalsPresenter.SetStepsTextView("0");
     }
 
     public void GetStatsAchievedCount()

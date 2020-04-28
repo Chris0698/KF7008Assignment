@@ -1,6 +1,8 @@
 package com.example.kf7008assignment;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,15 +36,6 @@ public class MyGoalsFragment extends Fragment implements IMyGoalsPresenter
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
-        try
-        {
-            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("My Goals");
-
-            myGoalsPresenter = new MyGoalsPresenter(this);
-        }
-        catch (Exception ex) {}
-
-
         stepsTextView = view.findViewById(R.id.stepsTextView);
         sleepTextView = view.findViewById(R.id.sleepTextView);
         caloriesTextView = view.findViewById(R.id.caloriesTextView);
@@ -61,22 +54,41 @@ public class MyGoalsFragment extends Fragment implements IMyGoalsPresenter
                 {
                     try
                     {
-                        int steps = 0;
-                        int calories = 0;
-                        int sleep = 0;
+                        String steps = stepsTextView.getText().toString();
+                        String sleep = sleepTextView.getText().toString();
+                        String calories = caloriesGoalPlainText.getText().toString();
 
-                        myGoalsPresenter.UpdateGoals(steps, sleep, calories, getContext());
+                        int stepsValue = Integer.parseInt(steps) ;
+                   //     int caloriesValue = Integer.parseInt(calories);
+                  //      int sleepValue = Integer.parseInt(sleep);
+
+                        myGoalsPresenter.UpdateGoals(stepsValue, 0, 0, getContext());
                     }
                     catch (Exception ex)
                     {
-                        //changes are it an illegal cast
+                        new AlertDialog.Builder(getContext())
+                                .setTitle("Exception")
+                                .setMessage(ex.getMessage())
+                                .setPositiveButton(android.R.string.ok, null)
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+                        ex.printStackTrace();
                     }
                 }
             });
         }
 
-        myGoalsPresenter.SetGoals();
-        myGoalsPresenter.GetStatsAchievedCount();
+        try
+        {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("My Goals");
+
+            myGoalsPresenter = new MyGoalsPresenter(this);
+
+            myGoalsPresenter.GetGoals(getContext());
+
+            myGoalsPresenter.GetStatsAchievedCount();
+        }
+        catch (Exception ex) {}
     }
 
     @Override

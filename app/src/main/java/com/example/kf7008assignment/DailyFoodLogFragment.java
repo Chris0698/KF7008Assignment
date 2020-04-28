@@ -1,10 +1,13 @@
 package com.example.kf7008assignment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -25,7 +28,7 @@ public class DailyFoodLogFragment extends Fragment implements IDailyFoodLogPrese
     private int month;
     private int year;
 
-    private int calories = 0;
+    private int calories;
 
     private TextView totalCaloriesTextView;
     private TextView foodLogDateTextView;
@@ -49,6 +52,7 @@ public class DailyFoodLogFragment extends Fragment implements IDailyFoodLogPrese
         totalCaloriesTextView = view.findViewById(R.id.foodLogTotalCaloriesTextView);
         foodListView = view.findViewById(R.id.foodLogFoodList);
         foodList = new ArrayList<>();
+        calories = 0;
 
         foodLogDateTextView = view.findViewById(R.id.foodLogDateTextView);
         if(foodLogDateTextView != null)
@@ -104,7 +108,37 @@ public class DailyFoodLogFragment extends Fragment implements IDailyFoodLogPrese
             }
         };
 
-        foodListView.setAdapter(foodItemArrayAdapter);
+        if(foodListView != null)
+        {
+            foodListView.setAdapter(foodItemArrayAdapter);
+
+            foodListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+            {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+                {
+                    final FoodItem foodItem = foodList.get(position);
+                    final int pos = position;
+                    new AlertDialog.Builder(getContext())
+                                            .setTitle("Delete Entry")
+                                            .setMessage("Are you sure you want to delete " + foodItem.GetName())
+                                            .setIcon(android.R.drawable.ic_dialog_alert)
+                                            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+                                            {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which)
+                                                {
+                                                    calories = calories - foodItem.GetCalories();
+                                                    totalCaloriesTextView.setText("Total Calories: " + calories);
+                                                    foodList.remove(pos);
+                                                    foodItemArrayAdapter.notifyDataSetChanged();
+                                                }
+                                            })
+                                            .setNegativeButton(android.R.string.cancel, null)
+                                            .show();
+                }
+            });
+        }
 
         try
         {

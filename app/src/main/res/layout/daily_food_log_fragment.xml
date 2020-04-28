@@ -21,6 +21,13 @@
         android:layout_marginTop="50sp"
         android:id="@+id/foodLogTotalCaloriesTextView"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tap on the item to delete the entry."
+        android:layout_marginLeft="10sp"
+        android:layout_marginTop="80sp" />
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="470sp"
