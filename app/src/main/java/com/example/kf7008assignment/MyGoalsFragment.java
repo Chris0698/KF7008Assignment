@@ -56,13 +56,13 @@ public class MyGoalsFragment extends Fragment implements IMyGoalsPresenter
                     {
                         String steps = stepsTextView.getText().toString();
                         String sleep = sleepTextView.getText().toString();
-                        String calories = caloriesGoalPlainText.getText().toString();
+                        String calories = caloriesTextView.getText().toString();
 
                         int stepsValue = Integer.parseInt(steps) ;
-                   //     int caloriesValue = Integer.parseInt(calories);
-                  //      int sleepValue = Integer.parseInt(sleep);
+                        int caloriesValue = Integer.parseInt(calories);
+                        int sleepValue = Integer.parseInt(sleep);
 
-                        myGoalsPresenter.UpdateGoals(stepsValue, 0, 0, getContext());
+                        myGoalsPresenter.UpdateGoals(stepsValue, sleepValue, caloriesValue, getContext());
                     }
                     catch (Exception ex)
                     {
@@ -88,7 +88,15 @@ public class MyGoalsFragment extends Fragment implements IMyGoalsPresenter
 
             myGoalsPresenter.GetStatsAchievedCount();
         }
-        catch (Exception ex) {}
+        catch (Exception ex)
+        {
+            new AlertDialog.Builder(getContext())
+                    .setTitle("Exception")
+                    .setMessage(ex.getMessage())
+                    .setPositiveButton(android.R.string.ok, null)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
     }
 
     @Override

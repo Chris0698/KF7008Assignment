@@ -19,8 +19,8 @@ public class MyGoalsPresenter
 
     public void UpdateGoals(int steps, int sleep, int calories, Context context)
     {
-        DatabaseHelper databaseHelper = new DatabaseHelper(context);
-        boolean result = databaseHelper.UpdateGoals(steps, sleep, calories);
+        DatabaseHandler databaseHandler = new DatabaseHandler(context);
+        boolean result = databaseHandler.UpdateGoals(steps, sleep, calories);
         if(result)
         {
             new AlertDialog.Builder(context)
@@ -44,7 +44,8 @@ public class MyGoalsPresenter
 
     public void GetGoals(Context context)
     {
-        DatabaseHelper databaseHelper = new DatabaseHelper(context);
+        DatabaseHandler databaseHandler = new DatabaseHandler(context);
+       // int a = databaseHandler.GetGoals();
 
         //get the goals then set the text fields
         iMyGoalsPresenter.SetCaloriesTextView("0");
