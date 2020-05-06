@@ -44,7 +44,8 @@ public class CaloriesFragment extends FitnessActivityFragmentBase implements ICa
         GetData();
     }
 
-    private void GetData()
+    @Override
+    public void GetData()
     {
         caloriesPresenter.GetGoal();
         caloriesPresenter.GetCaloriesForMonth(month, year);

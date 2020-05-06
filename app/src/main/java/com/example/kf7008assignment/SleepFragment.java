@@ -44,7 +44,8 @@ public class SleepFragment extends FitnessActivityFragmentBase implements ISleep
         GetData();
     }
 
-    private void GetData()
+    @Override
+    public void GetData()
     {
         sleepPresenter.GetGoal();
         sleepPresenter.GetSleepHoursForMonth(month, year);

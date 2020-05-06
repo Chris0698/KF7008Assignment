@@ -35,6 +35,8 @@ public abstract class FitnessActivityFragmentBase extends Fragment implements IS
     protected SwipeRefreshLayout swipeRefreshLayout;
     protected View view;
 
+    public abstract void GetData();
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
@@ -49,8 +51,10 @@ public abstract class FitnessActivityFragmentBase extends Fragment implements IS
 
         graphEntries = new ArrayList<>();
 
+        //get current mnoth
         year = Calendar.getInstance().get(Calendar.YEAR);
 
+        //get current year
         month = Calendar.getInstance().get(Calendar.MONTH);
 
         lineChart = view.findViewById(R.id.lineChart);
@@ -80,6 +84,8 @@ public abstract class FitnessActivityFragmentBase extends Fragment implements IS
                     {
                         month = 12;
                     }
+
+                    GetData();
                 }
             });
         }
@@ -97,6 +103,8 @@ public abstract class FitnessActivityFragmentBase extends Fragment implements IS
                     {
                         month = 1;
                     }
+
+                    GetData();
                 }
             });
         }

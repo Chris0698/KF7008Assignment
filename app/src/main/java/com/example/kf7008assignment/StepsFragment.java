@@ -45,7 +45,8 @@ public class StepsFragment extends FitnessActivityFragmentBase implements ISteps
         GetData();
     }
 
-    private void GetData()
+    @Override
+    public void GetData()
     {
         stepsPresenter.getGoal();
         stepsPresenter.GetStepsForMonth(month, year);
