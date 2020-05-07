@@ -33,29 +33,25 @@ public class StepsFragment extends FitnessActivityFragmentBase implements ISteps
         }
         catch (Exception ex)
         {
-
+            Log.i("TAG", "Exception: " + ex.getMessage());
+            ex.printStackTrace();
         }
-    }
-
-    private void RefreshUI()
-    {
-        //stepsPresenter.SyncConnectedDevice();
-        lineChart.clear();
-        graphEntries.clear();
-        GetData();
     }
 
     @Override
     public void GetData()
     {
+        lineChart.clear();
+        graphEntries.clear();
+
         stepsPresenter.getGoal();
         stepsPresenter.GetStepsForMonth(month, year);
-        LineDataSet lineDataSet = new LineDataSet(graphEntries, "");
+        LineDataSet lineDataSet = new LineDataSet(graphEntries, "Your steps");
 
         LineData lineData = new LineData(lineDataSet);
         lineChart.setData(lineData);
         //lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
-        lineDataSet.setValueTextColor(Color.BLACK);
+        lineDataSet.setValueTextColor(Color.RED);
         lineDataSet.setValueTextSize(10f);
     }
 
@@ -87,7 +83,7 @@ public class StepsFragment extends FitnessActivityFragmentBase implements ISteps
                 @Override
                 public void onRefresh()
                 {
-                    RefreshUI();
+                    GetData();
                     swipeRefreshLayout.setRefreshing(false);
                 }
             });

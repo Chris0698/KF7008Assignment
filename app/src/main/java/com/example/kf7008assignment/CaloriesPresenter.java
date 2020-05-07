@@ -85,7 +85,7 @@ public class CaloriesPresenter
         entries.add(new Entry(6, 3221));
         entries.add(new Entry(7, 50));
         entries.add(new Entry(8, 100));
-        entries.add(new Entry(9, 0));
+        entries.add(new Entry(9, 230));
         entries.add(new Entry(10, 1340));
         entries.add(new Entry(11, 986));
         entries.add(new Entry(12, 100));
@@ -96,7 +96,7 @@ public class CaloriesPresenter
         entries.add(new Entry(17, 3221));
         entries.add(new Entry(18, 50));
         entries.add(new Entry(19, 100));
-        entries.add(new Entry(20, 0));
+        entries.add(new Entry(20, 423));
         entries.add(new Entry(21, 1340));
         entries.add(new Entry(22, 986));
         entries.add(new Entry(23, 100));
@@ -105,7 +105,7 @@ public class CaloriesPresenter
         entries.add(new Entry(26, 3000));
         entries.add(new Entry(27, 863));
         entries.add(new Entry(28, 3221));
-        entries.add(new Entry(29, 50));
+        entries.add(new Entry(29, 6456));
         entries.add(new Entry(30, 100));
 
         for(Entry entry : entries)

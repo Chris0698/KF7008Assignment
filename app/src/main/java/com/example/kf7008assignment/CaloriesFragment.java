@@ -37,24 +37,20 @@ public class CaloriesFragment extends FitnessActivityFragmentBase implements ICa
         }
     }
 
-    private void RefreshUI()
-    {
-        lineChart.clear();
-        graphEntries.clear();
-        GetData();
-    }
-
     @Override
     public void GetData()
     {
+        lineChart.clear();
+        graphEntries.clear();
+
         caloriesPresenter.GetGoal();
         caloriesPresenter.GetCaloriesForMonth(month, year);
 
-        LineDataSet lineDataSet = new LineDataSet(graphEntries, "");
+        LineDataSet lineDataSet = new LineDataSet(graphEntries, "Calories burnt");
         LineData lineData = new LineData(lineDataSet);
         lineChart.setData(lineData);
         //lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
-        lineDataSet.setValueTextColor(Color.BLACK);
+        lineDataSet.setValueTextColor(Color.RED);
         lineDataSet.setValueTextSize(10f);
     }
 
@@ -86,7 +82,7 @@ public class CaloriesFragment extends FitnessActivityFragmentBase implements ICa
                 @Override
                 public void onRefresh()
                 {
-                    RefreshUI();
+                    GetData();
                     swipeRefreshLayout.setRefreshing(false);
                 }
             });

@@ -1,6 +1,7 @@
 package com.example.kf7008assignment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 //By Activity i mean as in excersie activity, not activity in an android dev world
-//ISwipeRefresh implemented here but method is overriden in subclasses
+//ISwipeRefresh implemented here but method is overriden in subclasses, needed here cause it
+//called in the onViewCreate method
 public abstract class FitnessActivityFragmentBase extends Fragment implements ISwipeRefresh
 {
     protected LineChart lineChart;
@@ -69,6 +71,7 @@ public abstract class FitnessActivityFragmentBase extends Fragment implements IS
 
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
 
+        //calls the method implemented from the ISwipeRefresh interface
         SwipeRefreshLayout();
 
         Button previousMonthButton = view.findViewById(R.id.fitnessActivityPreviousMonth);
@@ -80,8 +83,9 @@ public abstract class FitnessActivityFragmentBase extends Fragment implements IS
                 public void onClick(View v)
                 {
                     month--;
-                    if(month < 0)
+                    if(month < 1)
                     {
+                        year--;
                         month = 12;
                     }
 
@@ -101,6 +105,7 @@ public abstract class FitnessActivityFragmentBase extends Fragment implements IS
                     month++;
                     if(month > 12)
                     {
+                        year++;
                         month = 1;
                     }
 

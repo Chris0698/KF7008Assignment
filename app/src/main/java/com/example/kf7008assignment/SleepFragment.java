@@ -37,24 +37,20 @@ public class SleepFragment extends FitnessActivityFragmentBase implements ISleep
         }
     }
 
-    private void RefreshUI()
-    {
-        lineChart.clear();
-        graphEntries.clear();
-        GetData();
-    }
-
     @Override
     public void GetData()
     {
+        lineChart.clear();
+        graphEntries.clear();
+
         sleepPresenter.GetGoal();
         sleepPresenter.GetSleepHoursForMonth(month, year);
 
-        LineDataSet lineDataSet = new LineDataSet(graphEntries, "");
+        LineDataSet lineDataSet = new LineDataSet(graphEntries, "Sleep hours");
         LineData lineData = new LineData(lineDataSet);
         lineChart.setData(lineData);
         //lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
-        lineDataSet.setValueTextColor(Color.BLACK);
+        lineDataSet.setValueTextColor(Color.RED);
         lineDataSet.setValueTextSize(10f);
     }
 
@@ -86,7 +82,7 @@ public class SleepFragment extends FitnessActivityFragmentBase implements ISleep
                 @Override
                 public void onRefresh()
                 {
-                    RefreshUI();
+                    GetData();
                     swipeRefreshLayout.setRefreshing(false);
                 }
             });

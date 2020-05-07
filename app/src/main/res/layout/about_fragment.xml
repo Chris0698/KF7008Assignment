@@ -7,15 +7,33 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20sp"
+        android:layout_marginTop="10sp"
         android:layout_marginLeft="10sp"
         android:text="w16005124 Mobile App Assignment" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50sp"
+        android:layout_marginTop="40sp"
         android:layout_marginLeft="10sp"
         android:textSize="20sp"
         android:text="References" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10sp"
+        android:layout_marginTop="100sp"
+        android:text="Mp Android Chart: Jay, P., 2020. Philjay/Mpandroidchart. [online] GitHub. Available at: https://github.com/PhilJay/MPAndroidChart [Accessed 1 May 2020]. " />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10sp"
+        android:layout_marginTop="200sp"
+        android:text="Google Material Components: Google  GitHub. 2020. Material-Components/Material-Components-Android. [online] Available at: https://github.com/material-components/material-components-android [Accessed 1 May 2020]."
+        />
+
 </FrameLayout>
