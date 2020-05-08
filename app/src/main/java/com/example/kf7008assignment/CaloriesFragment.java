@@ -43,7 +43,7 @@ public class CaloriesFragment extends FitnessActivityFragmentBase implements ICa
         lineChart.clear();
         graphEntries.clear();
 
-        caloriesPresenter.GetGoal();
+        caloriesPresenter.GetGoal(getContext());
         caloriesPresenter.GetCaloriesForMonth(month, year);
 
         LineDataSet lineDataSet = new LineDataSet(graphEntries, "Calories burnt");

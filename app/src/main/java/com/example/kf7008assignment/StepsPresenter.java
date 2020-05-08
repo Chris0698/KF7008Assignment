@@ -1,5 +1,7 @@
 package com.example.kf7008assignment;
 
+import android.content.Context;
+
 import com.github.mikephil.charting.data.Entry;
 
 import java.util.ArrayList;
@@ -21,9 +23,10 @@ public class StepsPresenter
         goal = 0;
     }
 
-    public void getGoal()
+    public void getGoal(Context context)
     {
-        goal = 3000;
+        MyGoalsDatabaseHandler myGoalsDatabaseHandler = new MyGoalsDatabaseHandler(context);
+        goal = myGoalsDatabaseHandler.GetSteps();
 
         iStepsPresenter.UpdateStepsGoal("Current Steps Goal: " + goal);
     }

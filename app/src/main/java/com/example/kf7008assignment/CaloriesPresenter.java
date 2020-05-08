@@ -1,5 +1,7 @@
 package com.example.kf7008assignment;
 
+import android.content.Context;
+
 import com.github.mikephil.charting.data.Entry;
 
 import java.util.ArrayList;
@@ -19,9 +21,10 @@ public class CaloriesPresenter
         this.iCaloriesPresenter = iCaloriesPresenter;
     }
 
-    public void GetGoal()
+    public void GetGoal(Context context)
     {
-        goal = 500;
+        MyGoalsDatabaseHandler myGoalsDatabaseHandler = new MyGoalsDatabaseHandler(context);
+        goal = myGoalsDatabaseHandler.GetCalories();
         iCaloriesPresenter.UpdateGoal("Current Calories Goal: " + goal);
     }
 

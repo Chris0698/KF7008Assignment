@@ -1,5 +1,7 @@
 package com.example.kf7008assignment;
 
+import android.content.Context;
+
 import com.github.mikephil.charting.data.Entry;
 
 import java.util.ArrayList;
@@ -20,9 +22,10 @@ public class SleepPresenter
         goal = 0;
     }
 
-    public void GetGoal()
+    public void GetGoal(Context context)
     {
-        goal = 8;
+        MyGoalsDatabaseHandler myGoalsDatabaseHandler = new MyGoalsDatabaseHandler(context);
+        goal = myGoalsDatabaseHandler.GetSleep();
         iSleepPresenter.UpdateGoal("Current Sleep Goal: " + goal + " hours.");
     }
 
@@ -124,10 +127,5 @@ public class SleepPresenter
 
         iSleepPresenter.SetCounterGoalAchieved(aboveTargetGoalCounter);
         iSleepPresenter.SetMonthAndYearTextView(monthString + " " + year);
-    }
-
-    public void SyncConnectedDevice()
-    {
-
     }
 }

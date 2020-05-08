@@ -43,7 +43,7 @@ public class SleepFragment extends FitnessActivityFragmentBase implements ISleep
         lineChart.clear();
         graphEntries.clear();
 
-        sleepPresenter.GetGoal();
+        sleepPresenter.GetGoal(getContext());
         sleepPresenter.GetSleepHoursForMonth(month, year);
 
         LineDataSet lineDataSet = new LineDataSet(graphEntries, "Sleep hours");

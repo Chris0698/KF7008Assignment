@@ -19,9 +19,9 @@ public class MyGoalsPresenter
 
     public void UpdateGoals(int steps, int sleep, int calories, Context context)
     {
-        DatabaseHandler databaseHandler = new DatabaseHandler(context);
-        boolean result = databaseHandler.UpdateGoals(steps, sleep, calories);
-        if(result)
+        //DatabaseHandler databaseHandler = new DatabaseHandler(context);
+//        boolean result = databaseHandler.UpdateGoals(steps, sleep, calories);
+  //      if(result)
         {
             new AlertDialog.Builder(context)
                     .setTitle("Goals Updated")
@@ -30,27 +30,29 @@ public class MyGoalsPresenter
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
         }
-        else
+ //       else
         {
-            new AlertDialog.Builder(context)
-                    .setTitle("Big Fail")
-                    .setMessage(":(")
-                    .setPositiveButton(android.R.string.ok, null)
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
+ //           new AlertDialog.Builder(context)
+ //                   .setTitle("Big Fail")
+ //                   .setMessage(":(")
+ //                   .setPositiveButton(android.R.string.ok, null)
+ //                   .setIcon(android.R.drawable.ic_dialog_alert)
+ //                   .show();
         }
 
     }
 
     public void GetGoals(Context context)
     {
-        DatabaseHandler databaseHandler = new DatabaseHandler(context);
-       // int a = databaseHandler.GetGoals();
+        MyGoalsDatabaseHandler myGoalsDatabaseHandler = new MyGoalsDatabaseHandler(context);
+        int steps = myGoalsDatabaseHandler.GetSteps();
+        int sleep = myGoalsDatabaseHandler.GetSleep();
+        int cals = myGoalsDatabaseHandler.GetCalories();
 
         //get the goals then set the text fields
-        iMyGoalsPresenter.SetCaloriesTextView("0");
-        iMyGoalsPresenter.SetSleepTextView("0");
-        iMyGoalsPresenter.SetStepsTextView("0");
+        iMyGoalsPresenter.SetCaloriesTextView(cals + "");
+        iMyGoalsPresenter.SetSleepTextView(sleep + "");
+        iMyGoalsPresenter.SetStepsTextView(steps + "");
     }
 
     public void GetStatsAchievedCount()

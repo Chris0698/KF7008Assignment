@@ -44,7 +44,7 @@ public class StepsFragment extends FitnessActivityFragmentBase implements ISteps
         lineChart.clear();
         graphEntries.clear();
 
-        stepsPresenter.getGoal();
+        stepsPresenter.getGoal(getContext());
         stepsPresenter.GetStepsForMonth(month, year);
         LineDataSet lineDataSet = new LineDataSet(graphEntries, "Your steps");
 
