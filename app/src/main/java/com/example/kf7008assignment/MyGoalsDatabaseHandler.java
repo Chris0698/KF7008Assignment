@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-public class MyGoalsDatabaseHandler extends DatabaseHandler
+public class MyGoalsDatabaseHandler extends DatabaseHandlerBase
 {
     public MyGoalsDatabaseHandler(Context context)
     {
@@ -14,16 +14,20 @@ public class MyGoalsDatabaseHandler extends DatabaseHandler
 
     public int GetSteps()
     {
-        int steps = 500;
+        int steps = 0;
         try
         {
-            String sql = "Select " + GOALS_TABLE_COLUMN_VALUES + " from " + GOALS_TABLE_COLUMN_GOALS_NAME + " where " + GOALS_TABLE_COLUMN_GOALS_NAME + " = GOALS;";
+            String sql = "SELECT " + GOALS_TABLE_COLUMN_VALUES
+                       + " FROM " + TARGET_GOALS_TABLE
+                       + " WHERE " + GOALS_TABLE_ID + " = 'STEPS'";
+
             SQLiteDatabase database = getWritableDatabase();
             Cursor cursor = database.rawQuery(sql, null);
             if(cursor.moveToFirst())
             {
                 do
                 {
+                    Log.i("TAG", "Steps: " + cursor.getInt(0));
                     steps = cursor.getInt(0);
                 }
                 while (cursor.moveToNext());
@@ -40,11 +44,61 @@ public class MyGoalsDatabaseHandler extends DatabaseHandler
 
     public int GetSleep()
     {
-        return 8;
+        int sleep = 0;
+        try
+        {
+            String sql = "SELECT " + GOALS_TABLE_COLUMN_VALUES
+                    + " FROM " + TARGET_GOALS_TABLE
+                    + " WHERE " + GOALS_TABLE_ID + " = 'SLEEP'";
+
+            SQLiteDatabase database = getWritableDatabase();
+            Cursor cursor = database.rawQuery(sql, null);
+            if(cursor.moveToFirst())
+            {
+                do
+                {
+                    Log.i("TAG", "Sleep: " + cursor.getInt(0));
+                    sleep = cursor.getInt(0);
+                }
+                while (cursor.moveToNext());
+            }
+        }
+        catch (Exception ex)
+        {
+            Log.i("TAG", "Exception: " + ex.getMessage());
+            ex.printStackTrace();
+        }
+
+        return sleep;
     }
 
     public int GetCalories()
     {
-        return 300;
+        int cals = 0;
+        try
+        {
+            String sql = "SELECT " + GOALS_TABLE_COLUMN_VALUES
+                    + " FROM " + TARGET_GOALS_TABLE
+                    + " WHERE " + GOALS_TABLE_ID + " = 'CALS'";
+
+            SQLiteDatabase database = getWritableDatabase();
+            Cursor cursor = database.rawQuery(sql, null);
+            if(cursor.moveToFirst())
+            {
+                do
+                {
+                    Log.i("TAG", "Cals: " + cursor.getInt(0));
+                    cals = cursor.getInt(0);
+                }
+                while (cursor.moveToNext());
+            }
+        }
+        catch (Exception ex)
+        {
+            Log.i("TAG", "Exception: " + ex.getMessage());
+            ex.printStackTrace();
+        }
+
+        return cals;
     }
 }
