@@ -70,7 +70,7 @@ public class DailyFoodLogPresenter
         foodItems.add(foodItem);
         calories = calories + foodItem.GetCalories();
 
-        iDailyFoodLogPresenter.SetCaloriesTextView("Toal Calories: " + calories);
+        iDailyFoodLogPresenter.SetCaloriesTextView("Total Calories: " + calories);
         iDailyFoodLogPresenter.AddFoodItem(foodItem);
     }
 }
