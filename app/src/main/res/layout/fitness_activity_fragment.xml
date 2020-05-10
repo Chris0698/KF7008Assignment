@@ -51,12 +51,19 @@
             android:layout_marginTop="110sp"
             android:layout_marginLeft="10sp"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pull from the top to sync data from any connected device."
+            android:layout_marginTop="150sp"
+            android:layout_marginLeft="10sp"/>
+
         <com.github.mikephil.charting.charts.LineChart
             android:layout_width="match_parent"
             android:layout_height="400sp"
             android:id="@+id/lineChart"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="150sp"
+            android:layout_marginTop="180sp"
             android:layout_marginBottom="100sp"/>
     </FrameLayout>
 

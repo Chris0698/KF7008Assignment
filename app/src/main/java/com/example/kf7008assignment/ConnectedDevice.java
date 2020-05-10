@@ -2,6 +2,9 @@ package com.example.kf7008assignment;
 
 import android.bluetooth.BluetoothDevice;
 
+/**
+ * Used to "store" the connected bluetooth device.
+ */
 public class ConnectedDevice
 {
     private static ConnectedDevice instance = null;

@@ -145,6 +145,9 @@ public class DailyFoodLogFragment extends Fragment implements IDailyFoodLogPrese
         }
     }
 
+    /**
+     * Called before onViewCreated, not sure why though
+     */
     public void PopulateValues(int day, int month, int year)
     {
         this.day = day;

@@ -37,6 +37,8 @@ public class StepsPresenter
         //but for the assignment fake data for all months will be used unless i get round to adding
         //a DB
 
+        //also need to get data from the connected device then save it to the DB
+
         String monthString = "";
         switch (month)
         {
