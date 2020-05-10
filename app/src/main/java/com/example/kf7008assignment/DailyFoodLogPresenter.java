@@ -29,7 +29,7 @@ public class DailyFoodLogPresenter
         boolean recordFound = true;    //would call to the DAL to get if a record exists first
         if(recordFound)
         {
-            //techincally this would be populated from the DAL
+            //techincally this would be populated from the DAL, with the entire list returned
             foodItems = null;
 
             //test
@@ -43,27 +43,17 @@ public class DailyFoodLogPresenter
                 iDailyFoodLogPresenter.AddFoodItem(foodItem);
             }
 
-            iDailyFoodLogPresenter.SetCaloriesTextView(calories);
+            iDailyFoodLogPresenter.SetCaloriesTextView("Total Calories: " + calories);
         }
     }
 
-    /**
-     * Unused due to causing headaches
-     */
     public void RemoveItem(final int position)
     {
         FoodItem item = foodItems.get(position);
         foodItems.remove(item);
-        calories = 0;
-
-        for (FoodItem foodItem: foodItems)
-        {
-           // calories = calories + foodItem.GetCalories();
-            //iDailyFoodLogPresenter.UpdateFoodList(foodItem);
-        }
-
-        //iDailyFoodLogPresenter.SetCaloriesTextView("Total Calories: " + calories);
-
+        calories = calories - item.GetCalories();
+        iDailyFoodLogPresenter.RemoveFoodItem(item);
+        iDailyFoodLogPresenter.SetCaloriesTextView("Total Calories: " + calories);
     }
 
     public void AddFoodItemButtonClick(Activity activity)
@@ -80,7 +70,7 @@ public class DailyFoodLogPresenter
         foodItems.add(foodItem);
         calories = calories + foodItem.GetCalories();
 
-        iDailyFoodLogPresenter.SetCaloriesTextView(calories);
+        iDailyFoodLogPresenter.SetCaloriesTextView("Toal Calories: " + calories);
         iDailyFoodLogPresenter.AddFoodItem(foodItem);
     }
 }

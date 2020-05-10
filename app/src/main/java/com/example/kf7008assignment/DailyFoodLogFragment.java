@@ -22,25 +22,15 @@ import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 
-/**
- * I really don't like how this class is programmed to handle adding and removing new food.
- * Most of it should take place in the presenter but it just butchers everything up and i don't have
- * time to fix.
- */
 public class DailyFoodLogFragment extends Fragment implements IDailyFoodLogPresenter
 {
     private int day;
     private int month;
     private int year;
 
-    private int calories;
-
     private TextView totalCaloriesTextView;
-    private TextView foodLogDateTextView;
-    private ListView foodListView;
 
     private DailyFoodLogPresenter dailyFoodLogPresenter;
-
     private ArrayList<FoodItem> foodList;
     private ArrayAdapter<FoodItem> foodItemArrayAdapter;
 
@@ -55,11 +45,10 @@ public class DailyFoodLogFragment extends Fragment implements IDailyFoodLogPrese
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
         totalCaloriesTextView = view.findViewById(R.id.foodLogTotalCaloriesTextView);
-        foodListView = view.findViewById(R.id.foodLogFoodList);
+        ListView foodListView = view.findViewById(R.id.foodLogFoodList);
         foodList = new ArrayList<>();
-        calories = 0;
 
-        foodLogDateTextView = view.findViewById(R.id.foodLogDateTextView);
+        TextView foodLogDateTextView = view.findViewById(R.id.foodLogDateTextView);
         if(foodLogDateTextView != null)
         {
             foodLogDateTextView.setText("Food Log for: " + day + "-" + month + "-" + year);
@@ -91,9 +80,6 @@ public class DailyFoodLogFragment extends Fragment implements IDailyFoodLogPrese
                 public void onClick(View v)
                 {
                     dailyFoodLogPresenter.AddFoodItemButtonClick(getActivity());
-
-                  //  AddFoodItemDialog addFoodItemDialog = new AddFoodItemDialog(getActivity());
-                  //  addFoodItemDialog.ShowDialog(DailyFoodLogFragment.this);
                 }
             });
         }
@@ -125,7 +111,6 @@ public class DailyFoodLogFragment extends Fragment implements IDailyFoodLogPrese
                 public void onItemClick(AdapterView<?> parent, View view, final int position, long id)
                 {
                     final FoodItem foodItem = foodList.get(position);
-                    final int pos = position;
                     new AlertDialog.Builder(getContext())
                                             .setTitle("Delete Entry")
                                             .setMessage("Are you sure you want to delete " + foodItem.GetName())
@@ -135,15 +120,7 @@ public class DailyFoodLogFragment extends Fragment implements IDailyFoodLogPrese
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int which)
                                                 {
-                                                    //dailyFoodLogPresenter.RemoveItem(position);
-
-                                                    //IDEALLY i would of had this in the presenter
-                                                    //i tried it but it causing headaches due to the
-                                                    //list being changed while looping through
-                                                    calories = calories - foodItem.GetCalories();
-                                                    totalCaloriesTextView.setText("Total Calories: " + calories);
-                                                    foodList.remove(pos);
-                                                    foodItemArrayAdapter.notifyDataSetChanged();
+                                                    dailyFoodLogPresenter.RemoveItem(position);
                                                 }
                                             })
                                             .setNegativeButton(android.R.string.cancel, null)
@@ -158,7 +135,7 @@ public class DailyFoodLogFragment extends Fragment implements IDailyFoodLogPrese
 
             dailyFoodLogPresenter = new DailyFoodLogPresenter(this);
 
-            //populate the food list here if there a record for the date passed through
+            //populate the food list here and get total calories if there a record for the DMY
             dailyFoodLogPresenter.GetFoodItems(day, month, year);
         }
         catch (Exception ex)
@@ -179,17 +156,19 @@ public class DailyFoodLogFragment extends Fragment implements IDailyFoodLogPrese
     public void AddFoodItem(FoodItem foodItem)
     {
         foodList.add(foodItem);
-      //  calories = calories + foodItem.GetCalories();
-        Log.i("TAG", "Calories: " + foodItem.GetCalories());
         foodItemArrayAdapter.notifyDataSetChanged();
-
-        //SetCaloriesTextView(calories);
     }
 
     @Override
-    public void SetCaloriesTextView(int cals)
+    public void SetCaloriesTextView(String text)
     {
-        calories = cals;
-        totalCaloriesTextView.setText("Total Calories: " + cals);
+        totalCaloriesTextView.setText(text);
+    }
+
+    @Override
+    public void RemoveFoodItem(FoodItem foodItem)
+    {
+        foodList.remove(foodItem);
+        foodItemArrayAdapter.notifyDataSetChanged();
     }
 }

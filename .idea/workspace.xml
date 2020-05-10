@@ -25,13 +25,7 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/AddFoodItemDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/AddFoodItemDialog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/DailyFoodLogFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/DailyFoodLogFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/DailyFoodLogPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/DailyFoodLogPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/DatabaseHandlerBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/DatabaseHandlerBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/FoodLogFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/FoodLogFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/IDailyFoodLogPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/IDailyFoodLogPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/ISelectDevicePresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/ISelectDevicePresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/MyGoalsDatabaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/MyGoalsDatabaseHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/SelectDeviceFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/SelectDeviceFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/StepsPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/StepsPresenter.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

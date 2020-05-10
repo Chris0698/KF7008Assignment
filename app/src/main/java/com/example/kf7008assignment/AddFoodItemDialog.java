@@ -9,16 +9,19 @@ import android.widget.EditText;
 
 public class AddFoodItemDialog extends Dialog
 {
+    private int calories;
+
     public AddFoodItemDialog(Activity activity)
     {
         super(activity);
+        calories = 0;
     }
 
     public void ShowDialog(final DailyFoodLogPresenter dailyFoodLogPresenter)
     {
         if(dailyFoodLogPresenter == null)
         {
-            throw new IllegalStateException("Daily Food Log Fragment is null in AddFoodItemDialog");
+            throw new IllegalStateException("Daily Food Log Presenter is null in AddFoodItemDialog");
         }
 
         setContentView(R.layout.alert_add_daily_food);
@@ -47,34 +50,77 @@ public class AddFoodItemDialog extends Dialog
                 @Override
                 public void onClick(View v)
                 {
-                    int cals = 0;
-
                     String name = foodNameEditText.getText().toString();
-                    String calories = foodCaloriesEditText.getText().toString();
+                    String caloriesString = foodCaloriesEditText.getText().toString();
 
-                    if(calories.length() > 0)
+                    if(ValidateData(name, caloriesString))
                     {
-                        cals = Integer.parseInt(calories);
-                    }
+                        dailyFoodLogPresenter.AddFoodItem(new FoodItem(name, calories));
 
-                    if(name.length() > 0)
-                    {
-                        dailyFoodLogPresenter.AddFoodItem(new FoodItem(name, cals));
                         hide();
-                    }
-                    else
-                    {
-                        new AlertDialog.Builder(getContext())
-                                .setTitle("Empty Name")
-                                .setMessage("Name can't be empty")
-                                .setPositiveButton(android.R.string.ok, null)
-                                .setIcon(android.R.drawable.ic_dialog_alert)
-                                .show();
                     }
                 }
             });
         }
 
         show();
+    }
+
+    private boolean ValidateData(String foodName, String caloriesString)
+    {
+        boolean valid = true;
+
+        if(foodName.length() <= 0)
+        {
+            new AlertDialog.Builder(getContext())
+                    .setTitle("Empty Name")
+                    .setMessage("Name can't be empty.")
+                    .setPositiveButton(android.R.string.ok, null)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+            valid = false;
+        }
+        else if(caloriesString.length() <= 0)
+        {
+            new AlertDialog.Builder(getContext())
+                    .setTitle("Empty Calories")
+                    .setMessage("Enter a number for Calories.")
+                    .setPositiveButton(android.R.string.ok, null)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+            valid = false;
+        }
+        else if(caloriesString.length() > 0)
+        {
+            //The text view has a restriction of sort to prevent things like chars being entered
+            //but just in case
+            try
+            {
+                calories = Integer.parseInt(caloriesString);
+            }
+            catch (ClassCastException ex)
+            {
+                new AlertDialog.Builder(getContext())
+                        .setTitle("Invalid Calories")
+                        .setMessage("Invalid Entry for Calories.")
+                        .setPositiveButton(android.R.string.ok, null)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+                valid = false;
+            }
+
+            if(calories < 0)
+            {
+                new AlertDialog.Builder(getContext())
+                        .setTitle("Negative Calories")
+                        .setMessage("Calories can't be negative.")
+                        .setPositiveButton(android.R.string.ok, null)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+                valid = false;
+            }
+        }
+
+        return valid;
     }
 }
