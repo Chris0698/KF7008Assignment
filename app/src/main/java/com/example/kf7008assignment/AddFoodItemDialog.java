@@ -14,9 +14,9 @@ public class AddFoodItemDialog extends Dialog
         super(activity);
     }
 
-    public void ShowDialog(final DailyFoodLogFragment foodLogFragment)
+    public void ShowDialog(final DailyFoodLogPresenter dailyFoodLogPresenter)
     {
-        if(foodLogFragment == null)
+        if(dailyFoodLogPresenter == null)
         {
             throw new IllegalStateException("Daily Food Log Fragment is null in AddFoodItemDialog");
         }
@@ -59,7 +59,7 @@ public class AddFoodItemDialog extends Dialog
 
                     if(name.length() > 0)
                     {
-                        foodLogFragment.AddFoodItem(new FoodItem(name, cals));
+                        dailyFoodLogPresenter.AddFoodItem(new FoodItem(name, cals));
                         hide();
                     }
                     else

@@ -22,6 +22,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 
+/**
+ * I really don't like how this class is programmed to handle adding and removing new food.
+ * Most of it should take place in the presenter but it just butchers everything up and i don't have
+ * time to fix.
+ */
 public class DailyFoodLogFragment extends Fragment implements IDailyFoodLogPresenter
 {
     private int day;
@@ -57,7 +62,7 @@ public class DailyFoodLogFragment extends Fragment implements IDailyFoodLogPrese
         foodLogDateTextView = view.findViewById(R.id.foodLogDateTextView);
         if(foodLogDateTextView != null)
         {
-            foodLogDateTextView.setText("Food Log for: ");
+            foodLogDateTextView.setText("Food Log for: " + day + "-" + month + "-" + year);
         }
 
         Button backButton = view.findViewById(R.id.foodLogBackButton);
@@ -85,8 +90,10 @@ public class DailyFoodLogFragment extends Fragment implements IDailyFoodLogPrese
                 @Override
                 public void onClick(View v)
                 {
-                    AddFoodItemDialog addFoodItemDialog = new AddFoodItemDialog(getActivity());
-                    addFoodItemDialog.ShowDialog(DailyFoodLogFragment.this);
+                    dailyFoodLogPresenter.AddFoodItemButtonClick(getActivity());
+
+                  //  AddFoodItemDialog addFoodItemDialog = new AddFoodItemDialog(getActivity());
+                  //  addFoodItemDialog.ShowDialog(DailyFoodLogFragment.this);
                 }
             });
         }
@@ -115,7 +122,7 @@ public class DailyFoodLogFragment extends Fragment implements IDailyFoodLogPrese
             foodListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
             {
                 @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+                public void onItemClick(AdapterView<?> parent, View view, final int position, long id)
                 {
                     final FoodItem foodItem = foodList.get(position);
                     final int pos = position;
@@ -128,6 +135,11 @@ public class DailyFoodLogFragment extends Fragment implements IDailyFoodLogPrese
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int which)
                                                 {
+                                                    //dailyFoodLogPresenter.RemoveItem(position);
+
+                                                    //IDEALLY i would of had this in the presenter
+                                                    //i tried it but it causing headaches due to the
+                                                    //list being changed while looping through
                                                     calories = calories - foodItem.GetCalories();
                                                     totalCaloriesTextView.setText("Total Calories: " + calories);
                                                     foodList.remove(pos);
@@ -147,17 +159,11 @@ public class DailyFoodLogFragment extends Fragment implements IDailyFoodLogPrese
             dailyFoodLogPresenter = new DailyFoodLogPresenter(this);
 
             //populate the food list here if there a record for the date passed through
-            dailyFoodLogPresenter.GetFoodItem();
-
-            for(FoodItem item : foodList)
-            {
-                calories = item.GetCalories();
-            }
-
-            totalCaloriesTextView.setText("Total Calories: " + calories);
+            dailyFoodLogPresenter.GetFoodItems(day, month, year);
         }
         catch (Exception ex)
         {
+            Log.i("TAG", "Exception: " + ex.getMessage());
             ex.printStackTrace();
         }
     }
@@ -172,9 +178,18 @@ public class DailyFoodLogFragment extends Fragment implements IDailyFoodLogPrese
     @Override
     public void AddFoodItem(FoodItem foodItem)
     {
-        calories = calories + foodItem.GetCalories();
         foodList.add(foodItem);
-        totalCaloriesTextView.setText("Total Calories: " + calories);
+      //  calories = calories + foodItem.GetCalories();
+        Log.i("TAG", "Calories: " + foodItem.GetCalories());
         foodItemArrayAdapter.notifyDataSetChanged();
+
+        //SetCaloriesTextView(calories);
+    }
+
+    @Override
+    public void SetCaloriesTextView(int cals)
+    {
+        calories = cals;
+        totalCaloriesTextView.setText("Total Calories: " + cals);
     }
 }

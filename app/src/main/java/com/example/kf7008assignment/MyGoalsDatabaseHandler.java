@@ -49,8 +49,8 @@ public class MyGoalsDatabaseHandler extends DatabaseHandlerBase
         try
         {
             String sql = "SELECT " + GOALS_TABLE_COLUMN_VALUES
-                    + " FROM " + TARGET_GOALS_TABLE
-                    + " WHERE " + GOALS_TABLE_ID + " = 'SLEEP'";
+                       + " FROM " + TARGET_GOALS_TABLE
+                       + " WHERE " + GOALS_TABLE_ID + " = 'SLEEP'";
 
             SQLiteDatabase database = getWritableDatabase();
             Cursor cursor = database.rawQuery(sql, null);
@@ -79,8 +79,8 @@ public class MyGoalsDatabaseHandler extends DatabaseHandlerBase
         try
         {
             String sql = "SELECT " + GOALS_TABLE_COLUMN_VALUES
-                    + " FROM " + TARGET_GOALS_TABLE
-                    + " WHERE " + GOALS_TABLE_ID + " = 'CALS'";
+                       + " FROM " + TARGET_GOALS_TABLE
+                       + " WHERE " + GOALS_TABLE_ID + " = 'CALS'";
 
             SQLiteDatabase database = getWritableDatabase();
             Cursor cursor = database.rawQuery(sql, null);

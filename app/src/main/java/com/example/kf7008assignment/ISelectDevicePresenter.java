@@ -7,6 +7,4 @@ public interface ISelectDevicePresenter
     void AddDeviceToList(BluetoothDevice bluetoothDevice);
 
     void GoToMyDeviceFragment();
-
-    boolean AlertDialog(String title, String message);
 }

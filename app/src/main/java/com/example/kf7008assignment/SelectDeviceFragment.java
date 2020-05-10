@@ -33,8 +33,7 @@ public class SelectDeviceFragment extends Fragment implements ISelectDevicePrese
     private View view;
     private SwipeRefreshLayout swipeRefreshLayout;
 
-    private final int ENABLE_BLUETOOTH = 1;     //need a positive int
-    private boolean dialogResult;
+    private final int ENABLE_BLUETOOTH = 1;     //needs a positive int
 
     @Nullable
     @Override
@@ -131,13 +130,16 @@ public class SelectDeviceFragment extends Fragment implements ISelectDevicePrese
             ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Select Device");
 
             selectDevicePresenter = new SelectDevicePresenter(this);
+
+            SetUpBluetooth();
         }
         catch (Exception ex)
         {
-
+            Log.i("TAG", "Exception: " + ex.getMessage());
+            ex.printStackTrace();
         }
 
-        SetUpBluetooth();
+
     }
 
     /**
@@ -224,32 +226,5 @@ public class SelectDeviceFragment extends Fragment implements ISelectDevicePrese
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         }
-    }
-
-    @Override
-    public boolean AlertDialog(String title, String message)
-    {
-//        new AlertDialog.Builder(getActivity())
-//                .setTitle(title)
-//                .setMessage(message)
-//                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
-//                {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which)
-//                    {
-//                        dialogResult = true;
-//                    }
-//                })
-//                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener()
-//                {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which)
-//                    {
-//                        dialogResult = false;
-//                    }
-//                })
-//        .show();
-
-        return dialogResult;
     }
 }

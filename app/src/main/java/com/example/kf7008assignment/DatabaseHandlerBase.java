@@ -29,7 +29,7 @@ public abstract class DatabaseHandlerBase extends SQLiteOpenHelper
         Log.i("TAG", "Database creation");
         try
         {
-            //create first table
+            //create target goals table
             String sql = "CREATE TABLE " + TARGET_GOALS_TABLE + " ( " + GOALS_TABLE_ID + " TEXT PRIMARY KEY, "
                        + GOALS_TABLE_COLUMN_VALUES + " INTEGER);";
             db.execSQL(sql);
@@ -46,13 +46,9 @@ public abstract class DatabaseHandlerBase extends SQLiteOpenHelper
             contentValuesCals.put(GOALS_TABLE_ID, "CALS");
             contentValuesCals.put(GOALS_TABLE_COLUMN_VALUES, 0);
 
-            long result = db.insert(TARGET_GOALS_TABLE, null, contentValuesSteps);
+            db.insert(TARGET_GOALS_TABLE, null, contentValuesSteps);
             db.insert(TARGET_GOALS_TABLE, null, contentValuesSleep);
             db.insert(TARGET_GOALS_TABLE, null, contentValuesCals);
-        //    if(result != 0)
-            {
-        //        Log.i("TAG", "DB Insert failed.");
-            }
         }
         catch (Exception ex)
         {

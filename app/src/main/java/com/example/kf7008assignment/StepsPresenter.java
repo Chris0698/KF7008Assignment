@@ -127,10 +127,4 @@ public class StepsPresenter
         iStepsPresenter.SetCounterGoalAchieved(amountAboveTarget);
         iStepsPresenter.SetMonthAndYearTextView(monthString + " " + year);
     }
-
-    public void SyncConnectedDevice()
-    {
-        //for the assignment this data is fake
-        GetStepsForMonth(0,0);
-    }
 }

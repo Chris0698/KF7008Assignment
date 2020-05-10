@@ -9,7 +9,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="Exce" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="Cal" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
@@ -22,8 +22,16 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/AddFoodItemDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/AddFoodItemDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/DailyFoodLogFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/DailyFoodLogFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/DailyFoodLogPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/DailyFoodLogPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/DatabaseHandlerBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/DatabaseHandlerBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/FoodLogFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/FoodLogFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/IDailyFoodLogPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/IDailyFoodLogPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/ISelectDevicePresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/ISelectDevicePresenter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/MyGoalsDatabaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/MyGoalsDatabaseHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/MyGoalsPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/MyGoalsPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/SelectDeviceFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/SelectDeviceFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/StepsPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/StepsPresenter.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

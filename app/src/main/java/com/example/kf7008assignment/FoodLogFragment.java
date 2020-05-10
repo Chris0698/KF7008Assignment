@@ -31,6 +31,7 @@ public class FoodLogFragment extends Fragment implements IFoodLogPresenter
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
         calendarView = view.findViewById(R.id.calenderView);
+
         if(calendarView != null)
         {
             calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener()
@@ -41,13 +42,12 @@ public class FoodLogFragment extends Fragment implements IFoodLogPresenter
                     Log.i("TAG", "DMY: " + dayOfMonth + month + year);
 
                     DailyFoodLogFragment fragment = new DailyFoodLogFragment();
-                    //fragment.PopulateValues(dayOfMonth, month, year);
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.fragmentContainer, fragment);
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit();
-
+                    fragment.PopulateValues(dayOfMonth, month, year);
                 }
             });
         }
