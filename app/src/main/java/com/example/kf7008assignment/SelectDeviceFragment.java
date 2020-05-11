@@ -60,7 +60,6 @@ public class SelectDeviceFragment extends Fragment implements ISelectDevicePrese
                 @Override
                 public void onClick(View v)
                 {
-                    //selectDevicePresenter.ScanDeviceLE(false);
                     FragmentManager fragmentManager = getFragmentManager();
                     if(fragmentManager != null)
                     {

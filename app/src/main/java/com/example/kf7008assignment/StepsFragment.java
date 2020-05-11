@@ -50,7 +50,6 @@ public class StepsFragment extends FitnessActivityFragmentBase implements ISteps
 
         LineData lineData = new LineData(lineDataSet);
         lineChart.setData(lineData);
-        //lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
         lineDataSet.setValueTextColor(Color.RED);
         lineDataSet.setValueTextSize(10f);
     }

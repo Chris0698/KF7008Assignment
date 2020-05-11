@@ -33,7 +33,8 @@ public class SleepFragment extends FitnessActivityFragmentBase implements ISleep
         }
         catch (Exception ex)
         {
-
+            Log.i("TAG", "Exception: " + ex.getMessage());
+            ex.printStackTrace();
         }
     }
 

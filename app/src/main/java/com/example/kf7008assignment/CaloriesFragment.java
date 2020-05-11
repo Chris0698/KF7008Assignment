@@ -33,7 +33,8 @@ public class CaloriesFragment extends FitnessActivityFragmentBase implements ICa
         }
         catch (Exception ex)
         {
-
+            Log.i("TAG", "Exception: " + ex.getMessage());
+            ex.printStackTrace();
         }
     }
 
@@ -49,7 +50,6 @@ public class CaloriesFragment extends FitnessActivityFragmentBase implements ICa
         LineDataSet lineDataSet = new LineDataSet(graphEntries, "Calories burnt");
         LineData lineData = new LineData(lineDataSet);
         lineChart.setData(lineData);
-        //lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
         lineDataSet.setValueTextColor(Color.RED);
         lineDataSet.setValueTextSize(10f);
     }

@@ -17,7 +17,6 @@ import androidx.fragment.app.FragmentTransaction;
 public class FoodLogFragment extends Fragment implements IFoodLogPresenter
 {
     private CalendarView calendarView;
-
     private FoodLogPresenter foodLogPresenter;
 
     @Nullable
@@ -56,8 +55,13 @@ public class FoodLogFragment extends Fragment implements IFoodLogPresenter
         {
             ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Food Log");
 
-            foodLogPresenter = new FoodLogPresenter(this);
+            foodLogPresenter = new FoodLogPresenter(this);;
+
         }
-        catch (Exception ex) {}
+        catch (Exception ex)
+        {
+            Log.i("TAG","Exception: " + ex.getMessage());
+            ex.printStackTrace();
+        }
     }
 }

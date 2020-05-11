@@ -76,7 +76,8 @@ public class MyDeviceFragment extends Fragment implements IMyDevicePresenter
         }
         catch (Exception ex)
         {
-            Log.i("TAG", "My Device Presenter failed to create");
+            Log.i("TAG", "Exception: " + ex.getMessage());
+            ex.printStackTrace();
         }
     }
 

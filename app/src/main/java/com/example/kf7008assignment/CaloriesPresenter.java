@@ -33,6 +33,10 @@ public class CaloriesPresenter
         //really  this would go to the data access layer to get the data from a database
         //but for the assignment fake data for all months will be used unless i get round to adding
         //a DB
+        if(month < 0 || month > 12)
+        {
+            throw new IllegalStateException("Month is a negative or greater than 12");
+        }
 
         int amountAboveGoalCounter = 0;
         String monthString = "";
@@ -79,6 +83,7 @@ public class CaloriesPresenter
                 break;
         }
 
+        //fake data for the graph
         ArrayList<Entry> entries = new ArrayList<>();
         entries.add(new Entry(1, 100));
         entries.add(new Entry(2, 50));
@@ -111,6 +116,7 @@ public class CaloriesPresenter
         entries.add(new Entry(29, 6456));
         entries.add(new Entry(30, 100));
 
+        //for-each loop is better performance then the classic loop
         for(Entry entry : entries)
         {
             if(entry.getY() >= goal)
@@ -123,10 +129,5 @@ public class CaloriesPresenter
 
         iCaloriesPresenter.SetCounterGoalAchieved(amountAboveGoalCounter);
         iCaloriesPresenter.SetMonthAndYearTextView(monthString + " " + year);
-    }
-
-    public void SyncConnectedDevice()
-    {
-        GetCaloriesForMonth(0,0);
     }
 }

@@ -35,8 +35,9 @@ public abstract class FitnessActivityFragmentBase extends Fragment implements IS
     protected int year;
 
     protected SwipeRefreshLayout swipeRefreshLayout;
-    protected View view;
+    protected View view;        //view needed for implementing the swipe refresh in the 3 sub classes
 
+    //Called in the onViewCreated method in this class, to get the graph entries
     public abstract void GetData();
 
     @Nullable

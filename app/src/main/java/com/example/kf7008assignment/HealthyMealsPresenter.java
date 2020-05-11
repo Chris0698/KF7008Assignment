@@ -8,7 +8,7 @@ public class HealthyMealsPresenter
     {
         if(iHealthyMealsPresenter == null)
         {
-            throw new Exception();
+            throw new Exception("IHealthyMealPresenter can't be null in healthy meals presenter.");
         }
 
         this.iHealthyMealsPresenter = iHealthyMealsPresenter;
@@ -19,7 +19,10 @@ public class HealthyMealsPresenter
         //for the assignment this method is blank, (with the exception of a fake meal) but in real use
         //new meals would be downloaded from a web source from this method
 
-        FoodItem foodItem = new FoodItem("Pizza", "A pizza", 100);
+        FoodItem foodItem = new FoodItem("Pizza", "A pizza. A pizza is made by bread. \n  To prep, words, words, words.", 100);
+        FoodItem foodItem1 = new FoodItem("Ice Cream", "Ice cream is an amazing desert.", 20);
+
         iHealthyMealsPresenter.AddFoodItem(foodItem);
+        iHealthyMealsPresenter.AddFoodItem(foodItem1);
     }
 }

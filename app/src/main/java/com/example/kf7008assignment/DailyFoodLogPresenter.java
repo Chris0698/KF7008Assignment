@@ -26,6 +26,11 @@ public class DailyFoodLogPresenter
      */
     public void GetFoodItems(int day, int month, int year)
     {
+        if(day < 0 || month < 0 || year < 0)
+        {
+            throw new IllegalStateException("Day, Month or Year is negative");
+        }
+
         boolean recordFound = true;    //would call to the DAL to get if a record exists first
         if(recordFound)
         {

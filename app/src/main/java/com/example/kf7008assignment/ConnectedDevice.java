@@ -26,6 +26,10 @@ public class ConnectedDevice
         return instance;
     }
 
+    /**
+     * Set the connected device
+     * @param bluetoothDevice is the device, can be null to allow a disconnect
+     */
     public void SetConnectedDevice(BluetoothDevice bluetoothDevice)
     {
         connectedDevice = bluetoothDevice;

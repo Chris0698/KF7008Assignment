@@ -25,7 +25,7 @@ public class SelectDevicePresenter
     {
         if(iSelectDevicePresenter == null)
         {
-            throw new IllegalStateException("Select device presenter cant be null.");
+            throw new IllegalStateException("Select device presenter cant be null in select device presenter.");
         }
 
         this.iSelectDevicePresenter = iSelectDevicePresenter;

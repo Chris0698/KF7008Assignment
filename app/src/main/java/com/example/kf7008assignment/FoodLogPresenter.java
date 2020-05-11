@@ -8,7 +8,7 @@ public class FoodLogPresenter
     {
         if(iFoodLogPresenter == null)
         {
-            throw new Exception();
+            throw new Exception("Food Log can't be null in Food Log Presenter.");
         }
 
         this.iFoodLogPresenter = iFoodLogPresenter;

@@ -217,8 +217,6 @@ public class MainActivity extends AppCompatActivity
             case R.id.toolbarDark:
             {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-               // ActionBar actionBar = getSupportActionBar();
-                //actionBar.setBackgroundDrawable(new ColorDrawable((Color.parseColor("#272727"))));
                 break;
             }
             case R.id.toolbarLight:

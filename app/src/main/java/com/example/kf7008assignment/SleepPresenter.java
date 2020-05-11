@@ -15,7 +15,7 @@ public class SleepPresenter
     {
         if(iSleepPresenter == null)
         {
-            throw new Exception();
+            throw new Exception("ISleepPresenter can't be null in sleep presenter.");
         }
 
         this.iSleepPresenter = iSleepPresenter;
@@ -83,6 +83,7 @@ public class SleepPresenter
                 break;
         }
 
+        //graph entries
         ArrayList<Entry> entries = new ArrayList<>();
         entries.add(new Entry(1, 8));
         entries.add(new Entry(2, 8));

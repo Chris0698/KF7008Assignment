@@ -8,6 +8,8 @@ import android.util.Log;
 
 public abstract class DatabaseHandlerBase extends SQLiteOpenHelper
 {
+    //static final used for constants, increases execution speed according to the
+    //docs: https://developer.android.com/training/articles/perf-tips
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "database.db";
 

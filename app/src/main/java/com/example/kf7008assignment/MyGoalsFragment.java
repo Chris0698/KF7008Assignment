@@ -72,6 +72,7 @@ public class MyGoalsFragment extends Fragment implements IMyGoalsPresenter
                                 .setPositiveButton(android.R.string.ok, null)
                                 .setIcon(android.R.drawable.ic_dialog_alert)
                                 .show();
+                        Log.i("TAG", "Exception: " + ex.getMessage());
                         ex.printStackTrace();
                     }
                 }
@@ -96,6 +97,8 @@ public class MyGoalsFragment extends Fragment implements IMyGoalsPresenter
                     .setPositiveButton(android.R.string.ok, null)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
+            Log.i("TAG", "Exception: " + ex.getMessage());
+            ex.printStackTrace();
         }
     }
 

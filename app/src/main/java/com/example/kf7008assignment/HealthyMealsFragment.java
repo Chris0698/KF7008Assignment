@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class HealthyMealsFragment extends Fragment implements IHealthyMealsPresenter, ISwipeRefresh
 {
     private HealthyMealsPresenter healthyMealsPresenter;
-    private View view;
+    private View view;      //needed for the swipe/pull refresh
     private SwipeRefreshLayout swipeRefreshLayout;
 
     private ArrayAdapter<FoodItem> healthMealListViewAdapter;

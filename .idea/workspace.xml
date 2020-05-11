@@ -21,15 +21,35 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/AboutFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/AboutFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/CaloriesPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/CaloriesPresenter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/ConnectedDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/ConnectedDevice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/DailyFoodLogFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/DailyFoodLogFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/DailyFoodLogPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/DailyFoodLogPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/DatabaseHandlerBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/DatabaseHandlerBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/FitnessActivityFragmentBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/FitnessActivityFragmentBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/FoodLogFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/FoodLogFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/FoodLogPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/FoodLogPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/HealthyMealsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/HealthyMealsFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/HealthyMealsPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/HealthyMealsPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/MyDeviceFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/MyDeviceFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/MyGoalsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/MyGoalsFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/SelectDeviceFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/SelectDeviceFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/SelectDevicePresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/SelectDevicePresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/SleepFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/SleepFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/SleepPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/SleepPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/StepsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/StepsFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/StepsPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kf7008assignment/StepsPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-land/daily_food_log_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-land/daily_food_log_fragment.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-land/fitness_activity_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-land/fitness_activity_fragment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-land/food_log_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-land/food_log_fragment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-land/healthy_meals_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-land/healthy_meals_fragment.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-land/my_goals_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-land/my_goals_fragment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/about_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/about_fragment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/alert_selected_healthy_meal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/alert_selected_healthy_meal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/daily_food_log_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/daily_food_log_fragment.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fitness_activity_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fitness_activity_fragment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/my_goals_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/my_goals_fragment.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,6 +57,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="HVY0218A10012813" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -45,7 +66,12 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
-        <projects_view />
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
       </state>
     </system>
   </component>
@@ -132,6 +158,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="HVY0218A10012813" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-05-11T16:43:52.932Z" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$PROJECT_DIR$/../Android/Sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Desktop" />

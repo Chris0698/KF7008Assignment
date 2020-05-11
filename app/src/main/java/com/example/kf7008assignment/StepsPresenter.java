@@ -84,6 +84,7 @@ public class StepsPresenter
 
         int amountAboveTarget = 0;
 
+        //entries for the graph
         ArrayList<Entry> entries = new ArrayList<>();
         entries.add(new Entry(1, 100));
         entries.add(new Entry(2, 50));
