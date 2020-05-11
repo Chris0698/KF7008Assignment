@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10sp"
         android:layout_marginTop="80sp"
-        android:text="Mp Android Chart: Jay, P., 2020. Philjay/Mpandroidchart. [online] GitHub. Available at: https://github.com/PhilJay/MPAndroidChart [Accessed 1 May 2020]. " />
+        android:text="Mp Android Chart: Jay, P., 2020. Philjay/Mpandroidchart. [online] GitHub. Available at: https://github.com/PhilJay/MPAndroidChart [Accessed 20 April 2020]. " />
 
 
     <TextView
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10sp"
         android:layout_marginTop="150sp"
-        android:text="Google Material Components: Google  GitHub. 2020. Material-Components/Material-Components-Android. [online] Available at: https://github.com/material-components/material-components-android [Accessed 1 May 2020]."
+        android:text="Google Material Components: Google  GitHub. 2020. Material-Components/Material-Components-Android. [online] Available at: https://github.com/material-components/material-components-android [Accessed 20 April 2020]."
         />
 
 </FrameLayout>

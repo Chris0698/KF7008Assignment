@@ -55,7 +55,7 @@ public class FoodLogFragment extends Fragment implements IFoodLogPresenter
         {
             ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Food Log");
 
-            foodLogPresenter = new FoodLogPresenter(this);;
+            foodLogPresenter = new FoodLogPresenter(this);
 
         }
         catch (Exception ex)
