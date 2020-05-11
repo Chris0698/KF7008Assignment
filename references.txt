@@ -1,0 +1,3 @@
+Mp Android Chart: Jay, P., 2020. Philjay/Mpandroidchart. [online] GitHub. Available at: https://github.com/PhilJay/MPAndroidChart [Accessed 20 April 2020].
+
+Google Material Components: Google  GitHub. 2020. Material-Components/Material-Components-Android. [online] Available at: https://github.com/material-components/material-components-android [Accessed 20 April 2020].
